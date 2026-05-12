@@ -1,70 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PayRoll VN</title>
-    <link rel="stylesheet" href="css/style.css?v=4">
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body>
-    <div class="app-shell" id="appShell">
-        <!-- Sidebar Navigation -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo-box">
-                    <i data-lucide="clock" style="color:white;width:20px;height:20px"></i>
-                </div>
-                <span class="brand-name">PayRoll VN</span>
-            </div>
-
-            <!-- Nav items injected by main.js buildSidebar() -->
-            <nav class="nav-menu" id="navMenu"></nav>
-
-            <div class="sidebar-footer">
-                <div class="user-profile" id="userProfileBtn">
-                    <div class="avatar" id="userAvatar">AD</div>
-                    <div class="user-info">
-                        <span class="user-name" id="userName">Admin</span>
-                        <span class="user-role" id="userRole">Administrator</span>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <header class="top-bar">
-                <div class="breadcrumb" id="breadcrumb">
-                    <span>Trang chủ</span>
-                    <span class="breadcrumb-sep">/</span>
-                    <span style="color:var(--slate-800);font-weight:600">Tổng quan</span>
-                </div>
-
-                <div class="top-bar-actions">
-                    <div class="icon-btn" title="Thông báo">
-                        <i data-lucide="bell"></i>
-                    </div>
-                    <div class="icon-btn" id="logoutBtn" title="Đăng xuất">
-                        <i data-lucide="log-out"></i>
-                    </div>
-                </div>
-            </header>
-
-            <div class="content-body" id="pageContent">
-                <!-- Page Content Injected Here -->
-            </div>
-        </main>
-    </div>
-
-    <script src="js/auth.js?v=2"></script>
-    <script src="js/dashboard.js?v=2"></script>
-    <script src="js/employees.js?v=2"></script>
-    <script src="js/mapping.js?v=2"></script>
-    <script src="js/attendance.js?v=2"></script>
-    <script src="js/payroll.js?v=2"></script>
-    <script src="js/approval.js?v=2"></script>
-    <script src="js/payslip.js?v=2"></script>
-    <script src="js/main.js?v=2"></script>
-</body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
