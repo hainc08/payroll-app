@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PayRoll VN — Wireframe Export</title>
+<style>
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  --font: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --bg-base:      #0d1117;
+  --bg-surface:   #161b22;
+  --bg-elevated:  #1c2128;
+  --bg-overlay:   #21262d;
+
+  --border:       #30363d;
+  --border-light: #21262d;
+
+  --text-primary:   #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted:     #484f58;
+
+  --blue:       #388bfd;
+  --blue-bg:    #1f3a5f;
+  --blue-border:#1f6feb;
+
+  --green:       #3fb950;
+  --green-bg:    #1a3a2a;
+  --green-border:#238636;
+
+  --yellow:      #d29922;
+  --yellow-bg:   #2d2208;
+  --yellow-border:#9e6a03;
+
+  --red:         #f85149;
+  --red-bg:      #3d1a1a;
+  --red-border:  #da3633;
+
+  --purple:      #a371f7;
+  --purple-bg:   #2d1e4a;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+
+  --sidebar-w: 210px;
+  --topbar-h:  52px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 13px; }
+body { font-family: var(--font); background: #080c10; color: var(--text-primary); }
+a { color: var(--blue); text-decoration: none; }
+button { font-family: var(--font); cursor: pointer; }
+input, select, textarea { font-family: var(--font); font-size: 13px; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Screen Navigator ── */
+#nav-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: #080c10;
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+#nav-bar .nav-logo {
+  font-size: 14px; font-weight: 700; color: #f0c040;
+  margin-right: 8px; white-space: nowrap;
+}
+.nav-btn {
+  padding: 5px 12px; border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-surface); color: var(--text-secondary);
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.nav-btn:hover { border-color: var(--blue); color: var(--blue); }
+.nav-btn.active { background: var(--blue-bg); border-color: var(--blue); color: var(--blue); }
+
+/* ── Screen wrapper ── */
+.screen {
+  display: none;
+  margin-top: 52px;
+  min-height: calc(100vh - 52px);
+}
+.screen.active { display: block; }
+
+/* ── SHARED COMPONENTS ── */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 2px 8px; border-radius: 12px;
+  font-size: 11px; font-weight: 500;
+}
+.badge-blue   { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-border); }
+.badge-green  { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-border); }
+.badge-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid var(--yellow-border); }
+.badge-red    { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-border); }
+.badge-gray   { background: var(--bg-overlay); color: var(--text-secondary); border: 1px solid var(--border); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated); color: var(--text-primary);
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  transition: all .15s;
+}
+.btn:hover { border-color: var(--text-secondary); }
+.btn-primary { background: #238636; border-color: #2ea043; color: #fff; }
+.btn-primary:hover { background: #2ea043; }
+.btn-blue    { background: var(--blue-bg); border-color: var(--blue-border); color: var(--blue); }
+.btn-danger  { background: var(--red-bg);  border-color: var(--red-border);  color: var(--red); }
+.btn-yellow  { background: var(--yellow-bg); border-color: var(--yellow-border); color: var(--yellow); }
+
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+
+.divider {
+  border: none; border-top: 1px solid var(--border);
+  margin: 12px 0;
+}
+
+/* table shared */
+.tbl { width: 100%; border-collapse: collapse; font-size: 12px; }
+.tbl th {
+  padding: 8px 12px; text-align: left;
+  background: var(--bg-overlay);
+  color: var(--text-secondary); font-size: 11px;
+  font-weight: 600; text-transform: uppercase; letter-spacing: .4px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.tbl td {
+  padding: 8px 12px; border-bottom: 1px solid var(--border-light);
+  vertical-align: middle;
+}
+.tbl tr:hover td { background: var(--bg-elevated); }
+.tbl .num { text-align: right; font-variant-numeric: tabular-nums; }
+.tbl .row-warn td { background: rgba(210,153,34,.07); }
+.tbl .row-err  td { background: rgba(248,81,73,.07); }
+
+/* form fields */
+.field { display: flex; flex-direction: column; gap: 4px; }
+.label { font-size: 11px; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
+.input {
+  padding: 6px 10px; border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-base); color: var(--text-primary);
+  font-size: 13px; outline: none;
+  transition: border-color .15s;
+}
+.input:focus { border-color: var(--blue); }
+.select {
+  padding: 6px 10px; border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-base); color: var(--text-primary);
+  font-size: 12px; outline: none; cursor: pointer;
+}
+
+/* avatar */
+.avatar {
+  border-radius: 50%; display: inline-flex;
+  align-items: center; justify-content: center;
+  font-weight: 600; flex-shrink: 0;
+}
+.av-sm { width: 26px; height: 26px; font-size: 10px; }
+.av-md { width: 34px; height: 34px; font-size: 12px; }
+.av-lg { width: 44px; height: 44px; font-size: 15px; }
+.av-blue   { background: var(--blue-bg);  color: var(--blue); }
+.av-green  { background: var(--green-bg); color: var(--green); }
+.av-yellow { background: var(--yellow-bg);color: var(--yellow); }
+.av-red    { background: var(--red-bg);   color: var(--red); }
+
+/* ══════════════════════════════════════
+   APP SHELL (shared sidebar + topbar)
+   ══════════════════════════════════════ */
+.app-layout {
+  display: flex; height: calc(100vh - 52px);
+}
+.sidebar {
+  width: var(--sidebar-w); flex-shrink: 0;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+}
+.sidebar-logo {
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-logo .s-title { font-size: 15px; font-weight: 700; color: #f0c040; }
+.sidebar-logo .s-sub   { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+.sidebar-nav { flex: 1; padding: 6px 0; }
+.nav-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 16px; cursor: pointer;
+  color: var(--text-secondary); font-size: 13px;
+  border-left: 2px solid transparent;
+  transition: all .15s;
+}
+.nav-item:hover { color: var(--text-primary); background: var(--bg-elevated); }
+.nav-item.active {
+  color: var(--blue); background: var(--blue-bg);
+  border-left-color: var(--blue);
+}
+.nav-item .nav-icon { font-size: 16px; width: 18px; text-align: center; }
+.nav-item .nav-badge {
+  margin-left: auto; background: var(--red-bg);
+  color: var(--red); border: 1px solid var(--red-border);
+  font-size: 10px; padding: 1px 6px; border-radius: 10px;
+}
+
+.sidebar-user {
+  padding: 10px 14px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.sidebar-user .u-name { font-size: 12px; font-weight: 500; }
+.sidebar-user .u-role { font-size: 11px; color: var(--text-secondary); }
+
+.content-area {
+  flex: 1; display: flex; flex-direction: column;
+  overflow: hidden; background: var(--bg-base);
+}
+.topbar {
+  height: var(--topbar-h); flex-shrink: 0;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.topbar-left .t-title { font-size: 15px; font-weight: 600; }
+.topbar-left .t-sub   { font-size: 11px; color: var(--text-secondary); }
+.topbar-right { display: flex; align-items: center; gap: 8px; }
+
+.page-body {
+  flex: 1; overflow-y: auto;
+  padding: 20px;
+}
+
+/* ════════════════════════════════
+   SCREEN 0 — LOGIN
+   ════════════════════════════════ */
+#s-login {
+  background: var(--bg-base);
+  display: flex; align-items: center; justify-content: center;
+  min-height: calc(100vh - 52px);
+}
+.login-box {
+  width: 380px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 36px 32px;
+}
+.login-logo { text-align: center; margin-bottom: 28px; }
+.login-logo .ll-icon { font-size: 36px; }
+.login-logo .ll-title { font-size: 20px; font-weight: 700; color: #f0c040; margin-top: 6px; }
+.login-logo .ll-sub   { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+.login-form { display: flex; flex-direction: column; gap: 16px; }
+.login-form .btn { width: 100%; justify-content: center; padding: 9px; }
+
+/* ════════════════════════════════
+   SCREEN 1 — DASHBOARD
+   ════════════════════════════════ */
+.kpi-grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
+  margin-bottom: 16px;
+}
+.kpi-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+}
+.kpi-card .kc-label { font-size: 11px; color: var(--text-secondary); font-weight: 500; }
+.kpi-card .kc-value { font-size: 22px; font-weight: 700; margin: 6px 0 4px; }
+.kpi-card .kc-delta { font-size: 11px; }
+.kc-delta.up   { color: var(--green); }
+.kc-delta.down { color: var(--red); }
+
+.dash-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.panel-title { font-size: 12px; font-weight: 600; margin-bottom: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .4px; }
+
+.timeline-item {
+  display: flex; gap: 10px; padding-bottom: 12px;
+  font-size: 12px;
+}
+.tl-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  margin-top: 4px;
+}
+.tl-line { display: flex; flex-direction: column; gap: 0; }
+.tl-line .tl-dot-wrap { display: flex; flex-direction: column; align-items: center; }
+.tl-line .tl-connector { width: 1px; flex: 1; background: var(--border); margin: 3px 0; min-height: 16px; }
+
+.todo-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 0; border-bottom: 1px solid var(--border-light);
+  font-size: 12px; gap: 8px;
+}
+.todo-item:last-child { border-bottom: none; }
+
+/* ════════════════════════════════
+   SCREEN 2 — EMPLOYEES
+   ════════════════════════════════ */
+.emp-layout {
+  display: flex; height: 100%; gap: 0;
+}
+.emp-list {
+  width: 340px; flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.emp-list-filters {
+  padding: 10px 12px; background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.emp-list-scroll { flex: 1; overflow-y: auto; }
+.emp-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; cursor: pointer;
+  border-bottom: 1px solid var(--border-light);
+  border-left: 2px solid transparent;
+  transition: all .12s;
+}
+.emp-item:hover { background: var(--bg-elevated); }
+.emp-item.active { background: var(--blue-bg); border-left-color: var(--blue); }
+.emp-item .ei-info { flex: 1; min-width: 0; }
+.emp-item .ei-name { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.emp-item .ei-meta { font-size: 11px; color: var(--text-secondary); }
+.emp-item .ei-salary { text-align: right; flex-shrink: 0; }
+.emp-item .ei-amt  { font-size: 12px; font-weight: 500; }
+.emp-item .ei-type { font-size: 10px; color: var(--text-secondary); }
+
+.emp-detail { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.emp-detail-header {
+  padding: 14px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg-surface);
+}
+.edh-left { display: flex; align-items: center; gap: 12px; }
+.edh-name { font-size: 16px; font-weight: 600; }
+.edh-meta { display: flex; gap: 6px; margin-top: 4px; align-items: center; }
+
+.tabs {
+  display: flex; border-bottom: 1px solid var(--border);
+  padding: 0 20px; background: var(--bg-surface);
+}
+.tab {
+  padding: 10px 16px; font-size: 12px; cursor: pointer;
+  color: var(--text-secondary); border-bottom: 2px solid transparent;
+  font-weight: 500; transition: all .15s;
+}
+.tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+.tab:hover { color: var(--text-primary); }
+
+.tab-content { padding: 20px; overflow-y: auto; flex: 1; }
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.detail-rows { display: flex; flex-direction: column; gap: 8px; }
+.detail-row { display: grid; grid-template-columns: 140px 1fr; gap: 8px; align-items: center; }
+.dr-label { font-size: 11px; color: var(--text-secondary); }
+.dr-value { font-size: 13px; font-weight: 500; }
+
+.salary-est-box {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px; margin-top: 12px;
+}
+.seb-row { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; }
+.seb-total { border-top: 1px solid var(--border); margin-top: 6px; padding-top: 6px; font-weight: 600; }
+
+/* ════════════════════════════════
+   SCREEN 3 — MAPPING
+   ════════════════════════════════ */
+.mapping-table {
+  display: grid; grid-template-columns: 1fr 40px 1fr;
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.mt-header {
+  padding: 8px 14px;
+  background: var(--bg-overlay);
+  font-size: 11px; font-weight: 600;
+  color: var(--text-secondary); text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+}
+.mt-center-h {
+  background: var(--bg-overlay);
+  border-bottom: 1px solid var(--border);
+}
+.mt-row-l, .mt-row-r {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex; align-items: center; gap: 10px;
+}
+.mt-row-c {
+  border-bottom: 1px solid var(--border-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.mt-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.mt-code { font-size: 14px; font-weight: 600; font-family: var(--font-mono); }
+.mt-sub  { font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
+.mt-row-l.unmapped, .mt-row-r.unmapped, .mt-row-c.unmapped {
+  background: rgba(248,81,73,.06);
+}
+
+/* ════════════════════════════════
+   SCREEN 4 — IMPORT
+   ════════════════════════════════ */
+.stepper {
+  display: flex; align-items: center; gap: 0;
+  margin-bottom: 20px;
+}
+.step-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 500; color: var(--text-secondary);
+}
+.step-item.done  { color: var(--green); }
+.step-item.active { color: var(--blue); font-weight: 600; }
+.step-circle {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600;
+  border: 1.5px solid currentColor;
+  flex-shrink: 0;
+}
+.step-item.done .step-circle { background: var(--green-bg); }
+.step-item.active .step-circle { background: var(--blue-bg); }
+.step-line { flex: 1; height: 1px; background: var(--border); margin: 0 8px; }
+.step-line.done { background: var(--green-border); }
+
+.stat-bar {
+  display: grid; grid-template-columns: repeat(5,1fr); gap: 8px;
+  margin-bottom: 16px;
+}
+.stat-cell {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px; text-align: center;
+}
+.stat-cell.warn { background: var(--yellow-bg); border-color: var(--yellow-border); }
+.stat-cell.err  { background: var(--red-bg);    border-color: var(--red-border); }
+.sc-num   { font-size: 20px; font-weight: 700; }
+.sc-label { font-size: 11px; color: var(--text-secondary); margin-top: 3px; }
+.stat-cell.warn .sc-label, .stat-cell.warn .sc-num { color: var(--yellow); }
+.stat-cell.err  .sc-label, .stat-cell.err  .sc-num { color: var(--red); }
+
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-xl);
+  padding: 40px 20px; text-align: center;
+  background: var(--bg-surface);
+  margin-bottom: 16px;
+}
+.drop-zone:hover { border-color: var(--blue); }
+.dz-icon { font-size: 40px; margin-bottom: 10px; }
+.dz-text { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.dz-sub  { font-size: 12px; color: var(--text-secondary); margin-bottom: 16px; }
+
+/* ════════════════════════════════
+   SCREEN 5 — PAYROLL TABLE
+   ════════════════════════════════ */
+.payroll-toolbar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 0 14px;
+}
+.payroll-total {
+  margin-left: auto; font-size: 13px;
+}
+.payroll-total strong { font-size: 15px; color: var(--green); }
+
+.tbl-payroll { font-size: 11px; }
+.tbl-payroll th { font-size: 10px; }
+.tbl-payroll .override td:nth-child(9) { color: var(--yellow); }
+.tbl-payroll .override { background: rgba(210,153,34,.05); }
+
+.net-cell {
+  font-weight: 700; color: var(--green); font-size: 12px;
+}
+
+/* ════════════════════════════════
+   SCREEN 6 — APPROVAL
+   ════════════════════════════════ */
+.approval-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.summary-rows { display: flex; flex-direction: column; gap: 6px; }
+.sum-row {
+  display: flex; justify-content: space-between;
+  padding: 7px 10px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+}
+.sum-row.total {
+  background: var(--green-bg);
+  border: 1px solid var(--green-border);
+  font-weight: 600;
+}
+.sum-row.total span:last-child { color: var(--green); }
+
+.tl-node { display: flex; gap: 10px; padding-bottom: 14px; }
+.tl-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; flex-shrink: 0;
+}
+.tl-icon.done    { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.tl-icon.pending { background: var(--yellow-bg); color: var(--yellow); border: 1.5px dashed var(--yellow-border); }
+.tl-icon.rejected{ background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+.tl-body .tl-title { font-size: 12px; font-weight: 600; }
+.tl-body .tl-meta  { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+
+/* ════════════════════════════════
+   SCREEN 7 — PAYSLIP
+   ════════════════════════════════ */
+.payslip-wrap {
+  max-width: 520px; margin: 0 auto;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+.ps-header {
+  background: linear-gradient(135deg, #0f2027, #203a43);
+  padding: 20px 24px; text-align: center;
+}
+.ps-header .psh-title { font-size: 16px; font-weight: 700; letter-spacing: 2px; }
+.ps-header .psh-sub   { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+
+.ps-body { padding: 20px 24px; }
+.ps-emp {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 18px; padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.ps-emp .pe-name { font-size: 15px; font-weight: 600; }
+.ps-emp .pe-meta { font-size: 11px; color: var(--text-secondary); margin-top: 3px; }
+.ps-emp .pe-stat { margin-left: auto; text-align: right; }
+.ps-emp .pe-stat .ps-days { font-size: 14px; font-weight: 600; }
+.ps-emp .pe-stat .ps-days-label { font-size: 10px; color: var(--text-secondary); }
+
+.ps-table-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.ps-tbl-title { font-size: 10px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .4px; margin-bottom: 8px; }
+.ps-row { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; }
+.ps-row.total-row { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 6px; font-weight: 600; }
+.ps-row .deduct { color: var(--red); }
+
+.ps-net {
+  background: var(--green-bg);
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.psn-label { font-size: 13px; font-weight: 600; color: var(--green); }
+.psn-amount { font-size: 20px; font-weight: 700; color: var(--green); }
+.ps-words { font-size: 11px; color: var(--text-secondary); text-align: center; margin: 8px 0 14px; font-style: italic; }
+.ps-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 14px; border-top: 1px solid var(--border);
+}
+.ps-footer .pf-bank { font-size: 11px; color: var(--text-secondary); }
+
+/* ════════════════════════════════
+   SCREEN 8 — SETTINGS (mini)
+   ════════════════════════════════ */
+.settings-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.setting-card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; }
+.sc-title { font-size: 13px; font-weight: 600; margin-bottom: 12px; }
+.sc-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 6px 0; border-bottom: 1px solid var(--border-light); }
+.sc-row:last-child { border-bottom: none; }
+.sc-row .scr-label { color: var(--text-secondary); }
+.sc-row .scr-val { font-weight: 500; font-family: var(--font-mono); font-size: 12px; }
+
+/* alert */
+.alert {
+  padding: 9px 12px; border-radius: var(--radius-md);
+  border: 1px solid; display: flex; align-items: flex-start; gap: 8px;
+  font-size: 12px; margin-bottom: 12px;
+}
+.alert-warn { background: var(--yellow-bg); border-color: var(--yellow-border); color: var(--yellow); }
+.alert-info { background: var(--blue-bg);   border-color: var(--blue-border);   color: var(--blue); }
+.alert-err  { background: var(--red-bg);    border-color: var(--red-border);    color: var(--red); }
+.alert-ok   { background: var(--green-bg);  border-color: var(--green-border);  color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- ── TOP NAV ── -->
+<div id="nav-bar">
+  <span class="nav-logo">⏱ PayRoll VN — Wireframes</span>
+  <button class="nav-btn" onclick="show('s-login')">🔐 Login</button>
+  <button class="nav-btn active" onclick="show('s-dashboard')">📊 Dashboard</button>
+  <button class="nav-btn" onclick="show('s-employees')">👥 Nhân viên</button>
+  <button class="nav-btn" onclick="show('s-mapping')">🔗 Mapping</button>
+  <button class="nav-btn" onclick="show('s-import')">📥 Import CC</button>
+  <button class="nav-btn" onclick="show('s-payroll')">💰 Bảng lương</button>
+  <button class="nav-btn" onclick="show('s-approval')">✅ Phê duyệt</button>
+  <button class="nav-btn" onclick="show('s-payslip')">📄 Phiếu lương</button>
+  <button class="nav-btn" onclick="show('s-settings')">⚙ Cấu hình</button>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: LOGIN
+     ══════════════════════════════════ -->
+<div id="s-login" class="screen">
+  <div style="display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 52px);background:var(--bg-base)">
+    <div class="login-box">
+      <div class="login-logo">
+        <div class="ll-icon">⏱</div>
+        <div class="ll-title">PayRoll VN</div>
+        <div class="ll-sub">Hệ thống chấm công & tính lương</div>
+      </div>
+      <div class="login-form">
+        <div class="field">
+          <label class="label">Email</label>
+          <input class="input" type="email" placeholder="ketoan@abc.vn" value="ketoan@abc.vn">
+        </div>
+        <div class="field">
+          <label class="label">Mật khẩu</label>
+          <input class="input" type="password" placeholder="••••••••" value="••••••••">
+        </div>
+        <button class="btn btn-primary" style="justify-content:center;padding:9px">Đăng nhập</button>
+        <div style="text-align:center;font-size:11px;color:var(--text-muted)">Hệ thống nội bộ — Liên hệ Admin để được cấp tài khoản</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: DASHBOARD
+     ══════════════════════════════════ -->
+<div id="s-dashboard" class="screen active">
+  <div class="app-layout">
+    <!-- sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <div class="s-title">⏱ PayRoll VN</div>
+        <div class="s-sub">Nhà hàng ABC</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-item active"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item"><span class="nav-icon">👥</span> Nhân viên</div>
+        <div class="nav-item"><span class="nav-icon">🔗</span> Mapping mã NV</div>
+        <div class="nav-item"><span class="nav-icon">🕐</span> Chấm công</div>
+        <div class="nav-item"><span class="nav-icon">💰</span> Bảng lương</div>
+        <div class="nav-item"><span class="nav-icon">✅</span> Phê duyệt <span class="nav-badge">2</span></div>
+        <div class="nav-item"><span class="nav-icon">📄</span> Phiếu lương</div>
+        <div class="nav-item"><span class="nav-icon">📊</span> Báo cáo</div>
+        <div class="nav-item"><span class="nav-icon">⚙</span> Cấu hình</div>
+      </nav>
+      <div class="sidebar-user">
+        <div class="avatar av-sm av-blue">KT</div>
+        <div><div class="u-name">Kế toán</div><div class="u-role">ketoan@abc.vn</div></div>
+      </div>
+    </div>
+    <!-- content -->
+    <div class="content-area">
+      <div class="topbar">
+        <div class="topbar-left">
+          <div class="t-title">Dashboard</div>
+          <div class="t-sub">Tháng 5 / 2026</div>
+        </div>
+        <div class="topbar-right">
+          <button class="btn">🔔 2</button>
+          <button class="btn btn-blue">+ Tạo bảng lương</button>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kc-label">Tổng nhân viên</div>
+            <div class="kc-value">50</div>
+            <div class="kc-delta up">↑ 2 mới tháng này</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kc-label">Quỹ lương NET</div>
+            <div class="kc-value" style="font-size:17px">382,5 tr</div>
+            <div class="kc-delta down">↓ 2.1% vs tháng trước</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kc-label">Trạng thái lương T5</div>
+            <div class="kc-value" style="font-size:14px;margin-top:8px"><span class="badge badge-yellow">⏳ Chờ GĐ duyệt</span></div>
+          </div>
+          <div class="kpi-card">
+            <div class="kc-label">Chấm công lỗi</div>
+            <div class="kc-value" style="color:var(--red)">4</div>
+            <div class="kc-delta" style="color:var(--text-secondary)">cần xác nhận</div>
+          </div>
+        </div>
+        <div class="dash-grid">
+          <div class="card">
+            <div class="panel-title">Hoạt động gần đây</div>
+            <div class="timeline-item"><div class="tl-dot" style="background:var(--blue)"></div><div><span style="color:var(--blue)">📥</span> Import chấm công T5 <span style="color:var(--text-secondary)">— 10 phút trước</span></div></div>
+            <div class="timeline-item"><div class="tl-dot" style="background:var(--yellow)"></div><div><span style="color:var(--yellow)">✏️</span> Sửa lương NV EC-CMHIEU <span style="color:var(--text-secondary)">— 1h trước</span></div></div>
+            <div class="timeline-item"><div class="tl-dot" style="background:var(--green)"></div><div><span style="color:var(--green)">✅</span> Kế toán chốt bảng lương <span style="color:var(--text-secondary)">— 2h trước</span></div></div>
+            <div class="timeline-item"><div class="tl-dot" style="background:var(--text-muted)"></div><div>Thêm NV mới: Trần Văn Test <span style="color:var(--text-secondary)">— hôm qua</span></div></div>
+          </div>
+          <div class="card">
+            <div class="panel-title">Việc cần làm</div>
+            <div class="todo-item"><span style="color:var(--red)">● 4 bản ghi thiếu giờ ra</span><button class="btn" style="font-size:11px;padding:4px 10px">Xử lý</button></div>
+            <div class="todo-item"><span style="color:var(--yellow)">● Bảng lương chờ GĐ duyệt</span><button class="btn" style="font-size:11px;padding:4px 10px">Nhắc</button></div>
+            <div class="todo-item"><span style="color:var(--text-muted)">● Xuất phiếu lương sau duyệt</span><button class="btn" style="font-size:11px;padding:4px 10px;opacity:.4" disabled>Chờ duyệt</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: EMPLOYEES
+     ══════════════════════════════════ -->
+<div id="s-employees" class="screen">
+  <div class="app-layout">
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="s-title">⏱ PayRoll VN</div><div class="s-sub">Nhà hàng ABC</div></div>
+      <nav class="sidebar-nav">
+        <div class="nav-item"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item active"><span class="nav-icon">👥</span> Nhân viên</div>
+        <div class="nav-item"><span class="nav-icon">🔗</span> Mapping mã NV</div>
+        <div class="nav-item"><span class="nav-icon">🕐</span> Chấm công</div>
+        <div class="nav-item"><span class="nav-icon">💰</span> Bảng lương</div>
+        <div class="nav-item"><span class="nav-icon">✅</span> Phê duyệt <span class="nav-badge">2</span></div>
+        <div class="nav-item"><span class="nav-icon">📄</span> Phiếu lương</div>
+      </nav>
+      <div class="sidebar-user"><div class="avatar av-sm av-blue">KT</div><div><div class="u-name">Kế toán</div><div class="u-role">ketoan@abc.vn</div></div></div>
+    </div>
+    <div class="content-area">
+      <div class="topbar">
+        <div class="topbar-left"><div class="t-title">Quản lý nhân viên</div><div class="t-sub">50 nhân viên đang hoạt động</div></div>
+        <div class="topbar-right">
+          <button class="btn">📤 Import Excel</button>
+          <button class="btn btn-blue">+ Thêm nhân viên</button>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;overflow:hidden">
+        <!-- list -->
+        <div class="emp-list">
+          <div class="emp-list-filters">
+            <input class="input" placeholder="Tìm tên, mã NV...">
+            <div style="display:flex;gap:6px">
+              <select class="select" style="flex:1"><option>Tất cả bộ phận</option><option>Nhà hàng</option></select>
+              <select class="select" style="flex:1"><option>Đang làm việc</option><option>Đã nghỉ</option></select>
+            </div>
+          </div>
+          <div class="emp-list-scroll">
+            <div class="emp-item active">
+              <div class="avatar av-md av-green">NVT</div>
+              <div class="ei-info"><div class="ei-name">Nguyễn Văn Thương</div><div class="ei-meta">EC-NVTHUONG · Nhà hàng</div></div>
+              <div class="ei-salary"><div class="ei-amt">20.000.000</div><div class="ei-type">TNC · 9h</div></div>
+            </div>
+            <div class="emp-item">
+              <div class="avatar av-md av-blue">NTN</div>
+              <div class="ei-info"><div class="ei-name">Nguyễn Thị Ngân</div><div class="ei-meta">EC-NINGAN · Nhà hàng</div></div>
+              <div class="ei-salary"><div class="ei-amt">20.000.000</div><div class="ei-type">TNC · 9h</div></div>
+            </div>
+            <div class="emp-item">
+              <div class="avatar av-md av-yellow">CMH</div>
+              <div class="ei-info"><div class="ei-name">Cao Minh Hiếu</div><div class="ei-meta">EC-CMHIEU · Nhà hàng</div></div>
+              <div class="ei-salary"><div class="ei-amt">9.000.000</div><div class="ei-type">TH · 8h</div></div>
+            </div>
+            <div class="emp-item">
+              <div class="avatar av-md av-blue">PQP</div>
+              <div class="ei-info"><div class="ei-name">Phạm Quang Phong</div><div class="ei-meta">EC-PQPHONG · Nhà hàng</div></div>
+              <div class="ei-salary"><div class="ei-amt">10.000.000</div><div class="ei-type">TNC · 9h</div></div>
+            </div>
+            <div class="emp-item">
+              <div class="avatar av-md av-green">QTT</div>
+              <div class="ei-info"><div class="ei-name">Quảng Thị Thiết</div><div class="ei-meta">EC-QTTHIET · Nhà hàng</div></div>
+              <div class="ei-salary"><div class="ei-amt">9.000.000</div><div class="ei-type">TNC · 9h</div></div>
+            </div>
+            <div style="text-align:center;padding:10px;font-size:11px;color:var(--text-muted)">· · · 45 nhân viên tiếp · · ·</div>
+          </div>
+        </div>
+        <!-- detail -->
+        <div class="emp-detail">
+          <div class="emp-detail-header">
+            <div class="edh-left">
+              <div class="avatar av-lg av-green">NVT</div>
+              <div>
+                <div class="edh-name">Nguyễn Văn Thương</div>
+                <div class="edh-meta">
+                  <span style="font-size:11px;color:var(--text-secondary)">EC-NVTHUONG</span>
+                  <span class="badge badge-green">Đang làm</span>
+                  <span class="badge badge-blue">TNC</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:6px">
+              <button class="btn">✏️ Chỉnh sửa</button>
+              <button class="btn btn-danger">Vô hiệu hoá</button>
+            </div>
+          </div>
+          <div class="tabs">
+            <div class="tab active">Hồ sơ</div>
+            <div class="tab">Thông tin lương</div>
+            <div class="tab">Lịch sử lương</div>
+            <div class="tab">Chấm công</div>
+          </div>
+          <div class="tab-content">
+            <div class="detail-grid">
+              <div>
+                <div style="font-size:11px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Thông tin cá nhân</div>
+                <div class="detail-rows">
+                  <div class="detail-row"><span class="dr-label">Bộ phận</span><span class="dr-value">Nhà hàng</span></div>
+                  <div class="detail-row"><span class="dr-label">Chức vụ</span><span class="dr-value">Quản lý</span></div>
+                  <div class="detail-row"><span class="dr-label">Hình thức LĐ</span><span class="dr-value">Toàn thời gian</span></div>
+                  <div class="detail-row"><span class="dr-label">Ngày vào làm</span><span class="dr-value">01/03/2022</span></div>
+                  <div class="detail-row"><span class="dr-label">CCCD</span><span class="dr-value">079 ··· 4521 <button class="btn" style="font-size:10px;padding:2px 6px">Hiện</button></span></div>
+                  <div class="detail-row"><span class="dr-label">Ngân hàng</span><span class="dr-value">ACB — ···4521</span></div>
+                  <div class="detail-row"><span class="dr-label">Người phụ thuộc</span><span class="dr-value">2 người <span style="font-size:11px;color:var(--text-secondary)">(−8.8tr/tháng)</span></span></div>
+                  <div class="detail-row"><span class="dr-label">Mã máy CC</span><span class="dr-value" style="color:var(--green)">00002 ✓</span></div>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:11px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Cấu trúc lương</div>
+                <div class="detail-rows">
+                  <div class="detail-row"><span class="dr-label">Lương HĐ gross</span><span class="dr-value" style="font-size:15px">20.000.000 đ</span></div>
+                  <div class="detail-row"><span class="dr-label">Giờ chuẩn/ngày</span><span class="dr-value">9 giờ</span></div>
+                  <div class="detail-row"><span class="dr-label">Ngày công chuẩn</span><span class="dr-value">26 ngày</span></div>
+                  <div class="detail-row"><span class="dr-label">PC trách nhiệm</span><span class="dr-value">10.150.000 đ</span></div>
+                  <div class="detail-row"><span class="dr-label">PC điện thoại</span><span class="dr-value">500.000 đ</span></div>
+                  <div class="detail-row"><span class="dr-label">Thưởng DT</span><span class="dr-value">17.120.000 đ</span></div>
+                </div>
+                <div class="salary-est-box">
+                  <div style="font-size:11px;color:var(--text-secondary);margin-bottom:6px">Ước tính tháng đủ công</div>
+                  <div class="seb-row"><span style="color:var(--text-secondary)">Gross</span><span>48.923.846 đ</span></div>
+                  <div class="seb-row"><span style="color:var(--text-secondary)">BHXH + Thuế</span><span style="color:var(--red)">−1.933.376 đ</span></div>
+                  <div class="seb-row seb-total"><span style="color:var(--green)">NET thực lĩnh</span><span style="color:var(--green)">46.990.470 đ</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: MAPPING
+     ══════════════════════════════════ -->
+<div id="s-mapping" class="screen">
+  <div class="app-layout">
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="s-title">⏱ PayRoll VN</div><div class="s-sub">Nhà hàng ABC</div></div>
+      <nav class="sidebar-nav">
+        <div class="nav-item"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item"><span class="nav-icon">👥</span> Nhân viên</div>
+        <div class="nav-item active"><span class="nav-icon">🔗</span> Mapping mã NV</div>
+        <div class="nav-item"><span class="nav-icon">🕐</span> Chấm công</div>
+        <div class="nav-item"><span class="nav-icon">💰</span> Bảng lương</div>
+        <div class="nav-item"><span class="nav-icon">✅</span> Phê duyệt <span class="nav-badge">2</span></div>
+      </nav>
+      <div class="sidebar-user"><div class="avatar av-sm av-blue">KT</div><div><div class="u-name">Kế toán</div><div class="u-role">ketoan@abc.vn</div></div></div>
+    </div>
+    <div class="content-area">
+      <div class="topbar">
+        <div class="topbar-left"><div class="t-title">Mapping mã nhân viên</div><div class="t-sub">Liên kết mã máy chấm công ↔ mã lương</div></div>
+        <div class="topbar-right">
+          <span class="badge badge-green">49 đã map</span>
+          <span class="badge badge-red">1 chưa map</span>
+          <button class="btn">📤 Import Excel</button>
+          <button class="btn btn-blue">⬇ Xuất DS</button>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="alert alert-info">ℹ️ <span>Chọn mã máy CC → gán NV hệ thống. Mapping chỉ cần làm <strong>1 lần</strong>. Mã chưa map sẽ bị chặn khi import chấm công.</span></div>
+        <div style="display:flex;gap:8px;margin-bottom:14px">
+          <input class="input" placeholder="Tìm mã máy hoặc tên..." style="width:240px">
+          <div style="display:flex;border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden">
+            <button style="padding:6px 14px;font-size:12px;background:var(--blue-bg);color:var(--blue);border:none;cursor:pointer">Tất cả (50)</button>
+            <button style="padding:6px 14px;font-size:12px;background:transparent;color:var(--text-secondary);border:none;border-left:1px solid var(--border);cursor:pointer">Đã map (49)</button>
+            <button style="padding:6px 14px;font-size:12px;background:transparent;color:var(--red);border:none;border-left:1px solid var(--border);cursor:pointer">Chưa map (1)</button>
+          </div>
+        </div>
+        <div class="mapping-table">
+          <div class="mt-header">Mã máy chấm công</div>
+          <div class="mt-center-h"></div>
+          <div class="mt-header">Nhân viên hệ thống (mã lương)</div>
+          <!-- row 1 -->
+          <div class="mt-row-l"><div class="mt-dot" style="background:var(--green)"></div><div><div class="mt-code">00002</div><div class="mt-sub">Pham Thi Ngoc Bich</div></div></div>
+          <div class="mt-row-c" style="color:var(--green)">↔</div>
+          <div class="mt-row-r" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:8px"><div class="avatar av-sm av-green">PB</div><div><div style="font-size:12px;font-weight:500">Phạm Thị Ngọc Bích</div><div style="font-size:11px;color:var(--text-secondary)">EC-PTNBICH · VP</div></div></div><button class="btn" style="font-size:11px;padding:3px 8px">✏</button></div>
+          <!-- row 2 -->
+          <div class="mt-row-l"><div class="mt-dot" style="background:var(--green)"></div><div><div class="mt-code">00015</div><div class="mt-sub">Nguyen The Thai</div></div></div>
+          <div class="mt-row-c" style="color:var(--green)">↔</div>
+          <div class="mt-row-r" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:8px"><div class="avatar av-sm av-blue">NT</div><div><div style="font-size:12px;font-weight:500">Nguyễn Thế Thái</div><div style="font-size:11px;color:var(--text-secondary)">EC-NTHAI · Nhà hàng</div></div></div><button class="btn" style="font-size:11px;padding:3px 8px">✏</button></div>
+          <!-- row 3 unmapped -->
+          <div class="mt-row-l unmapped"><div class="mt-dot" style="background:var(--red)"></div><div><div class="mt-code" style="color:var(--red)">00999</div><div class="mt-sub">Unknown</div></div><span class="badge badge-red" style="margin-left:auto;font-size:10px">Chưa map</span></div>
+          <div class="mt-row-c unmapped" style="color:var(--red)">?</div>
+          <div class="mt-row-r unmapped" style="gap:8px"><select class="select" style="flex:1;border-color:var(--red-border)"><option>-- Chọn nhân viên để gán --</option><option>Nguyễn Văn An · EC-NVAN</option></select><button class="btn btn-danger" style="font-size:12px">Gán</button></div>
+          <!-- row 4 -->
+          <div class="mt-row-l"><div class="mt-dot" style="background:var(--green)"></div><div><div class="mt-code">00026</div><div class="mt-sub">Nguyen Thi Lien</div></div></div>
+          <div class="mt-row-c" style="color:var(--green)">↔</div>
+          <div class="mt-row-r" style="justify-content:space-between"><div style="display:flex;align-items:center;gap:8px"><div class="avatar av-sm av-yellow">NL</div><div><div style="font-size:12px;font-weight:500">Nguyễn Thị Liên</div><div style="font-size:11px;color:var(--text-secondary)">EC-NTLIEN · Nhà hàng</div></div></div><button class="btn" style="font-size:11px;padding:3px 8px">✏</button></div>
+          <!-- ellipsis -->
+          <div style="padding:8px 14px;text-align:center;color:var(--text-muted);font-size:11px;border-bottom:1px solid var(--border-light)">· · · 46 tiếp theo · · ·</div>
+          <div></div>
+          <div style="padding:8px 14px;text-align:center;color:var(--text-muted);font-size:11px;border-bottom:1px solid var(--border-light)">· · ·</div>
+        </div>
+        <div style="margin-top:10px;padding:8px 12px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-md);display:flex;align-items:center;gap:12px;font-size:11px">
+          <span style="color:var(--text-secondary)">🕐 Lịch sử:</span>
+          <span>00043 → EC-TVDON <span style="color:var(--text-secondary)">· ketoan@abc.vn · 08/05</span></span>
+          <span>00162 → EC-PQPHONG <span style="color:var(--text-secondary)">· admin · 01/04</span></span>
+          <button class="btn" style="margin-left:auto;font-size:11px;padding:3px 10px">Xem đầy đủ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: IMPORT
+     ══════════════════════════════════ -->
+<div id="s-import" class="screen">
+  <div class="app-layout">
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="s-title">⏱ PayRoll VN</div><div class="s-sub">Nhà hàng ABC</div></div>
+      <nav class="sidebar-nav">
+        <div class="nav-item"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item"><span class="nav-icon">👥</span> Nhân viên</div>
+        <div class="nav-item"><span class="nav-icon">🔗</span> Mapping mã NV</div>
+        <div class="nav-item active"><span class="nav-icon">🕐</span> Chấm công</div>
+        <div class="nav-item"><span class="nav-icon">💰</span> Bảng lương</div>
+        <div class="nav-item"><span class="nav-icon">✅</span> Phê duyệt <span class="nav-badge">2</span></div>
+      </nav>
+      <div class="sidebar-user"><div class="avatar av-sm av-blue">KT</div><div><div class="u-name">Kế toán</div><div class="u-role">ketoan@abc.vn</div></div></div>
+    </div>
+    <div class="content-area">
+      <div class="topbar">
+        <div class="topbar-left"><div class="t-title">Import Chấm công</div><div class="t-sub">Chấm công → Import file Excel</div></div>
+        <div class="topbar-right">
+          <select class="select"><option>Tháng 5 / 2026</option></select>
+          <button class="btn btn-primary">✓ Xác nhận import</button>
+        </div>
+      </div>
+      <div class="page-body">
+        <!-- stepper -->
+        <div class="stepper">
+          <div class="step-item done"><div class="step-circle">✓</div> Upload file</div>
+          <div class="step-line done"></div>
+          <div class="step-item done"><div class="step-circle">✓</div> Parse & validate</div>
+          <div class="step-line done"></div>
+          <div class="step-item active"><div class="step-circle">3</div> Review & xác nhận</div>
+          <div class="step-line"></div>
+          <div class="step-item"><div class="step-circle">4</div> Lưu vào DB</div>
+        </div>
+        <div class="alert alert-warn">⚠️ <strong>4 bản ghi cần xử lý:</strong> 3 thiếu giờ ra · 1 mã NV chưa có mapping <button class="btn" style="margin-left:auto;font-size:11px;padding:3px 10px;color:var(--yellow)">Xem chi tiết</button></div>
+        <div class="stat-bar">
+          <div class="stat-cell"><div class="sc-num">50</div><div class="sc-label">Nhân viên</div></div>
+          <div class="stat-cell"><div class="sc-num">842</div><div class="sc-label">Bản ghi</div></div>
+          <div class="stat-cell"><div class="sc-num" style="color:var(--green)">838</div><div class="sc-label">Hợp lệ</div></div>
+          <div class="stat-cell warn"><div class="sc-num">3</div><div class="sc-label">Thiếu giờ Ra</div></div>
+          <div class="stat-cell err"><div class="sc-num">1</div><div class="sc-label">Chưa mapping</div></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:12px">
+          <input class="input" placeholder="Tìm nhân viên..." style="width:220px">
+          <select class="select"><option>Tất cả</option><option>Lỗi / Cảnh báo</option></select>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">
+          <table class="tbl">
+            <thead><tr><th>Mã máy CC</th><th>Tên NV</th><th>Ngày</th><th>Vào 1</th><th>Ra 1</th><th>Vào 2</th><th>Ra 2</th><th>Tổng giờ</th><th>Trạng thái</th></tr></thead>
+            <tbody>
+              <tr><td><code style="font-family:var(--font-mono);font-size:12px">00002</code></td><td>Pham Thi Ngoc Bich</td><td>02/05</td><td>09:37</td><td>21:28</td><td>—</td><td>—</td><td class="num">11.83h</td><td><span class="badge badge-green">✓ Hợp lệ</span></td></tr>
+              <tr class="row-warn"><td><code style="font-family:var(--font-mono);font-size:12px">00043</code></td><td>Trinh Van Don</td><td>02/05</td><td>19:57</td><td style="color:var(--red)">—</td><td>—</td><td>—</td><td class="num">0h</td><td><span class="badge badge-yellow">⚠ Thiếu Ra</span></td></tr>
+              <tr class="row-err"><td><code style="font-family:var(--font-mono);font-size:12px;color:var(--red)">00999</code></td><td style="color:var(--text-secondary)">Unknown</td><td>03/05</td><td>08:00</td><td>17:00</td><td>—</td><td>—</td><td class="num">9h</td><td><span class="badge badge-red">✕ Chưa map</span></td></tr>
+              <tr><td><code style="font-family:var(--font-mono);font-size:12px">00015</code></td><td>Nguyen The Thai</td><td>02/05</td><td>07:05</td><td>21:01</td><td>—</td><td>—</td><td class="num">13.93h</td><td><span class="badge badge-green">✓ Hợp lệ</span></td></tr>
+              <tr><td colspan="9" style="text-align:center;color:var(--text-muted);font-size:11px">· · · 838 bản ghi tiếp theo · · ·</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: PAYROLL
+     ══════════════════════════════════ -->
+<div id="s-payroll" class="screen">
+  <div class="app-layout">
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="s-title">⏱ PayRoll VN</div><div class="s-sub">Nhà hàng ABC</div></div>
+      <nav class="sidebar-nav">
+        <div class="nav-item"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item"><span class="nav-icon">👥</span> Nhân viên</div>
+        <div class="nav-item"><span class="nav-icon">🔗</span> Mapping mã NV</div>
+        <div class="nav-item"><span class="nav-icon">🕐</span> Chấm công</div>
+        <div class="nav-item active"><span class="nav-icon">💰</span> Bảng lương</div>
+        <div class="nav-item"><span class="nav-icon">✅</span> Phê duyệt <span class="nav-badge">2</span></div>
+      </nav>
+      <div class="sidebar-user"><div class="avatar av-sm av-blue">KT</div><div><div class="u-name">Kế toán</div><div class="u-role">ketoan@abc.vn</div></div></div>
+    </div>
+    <div class="content-area">
+      <div class="topbar">
+        <div class="topbar-left">
+          <div class="t-title">Bảng lương Tháng 5/2026 &nbsp;<span class="badge badge-yellow">⏳ Chờ KT duyệt</span></div>
+          <div class="t-sub">Tạo: 10/05/2026 · 50 nhân viên</div>
+        </div>
+        <div class="topbar-right">
+          <button class="btn">⬇ Xuất Excel</button>
+          <button class="btn btn-primary">✓ Submit phê duyệt</button>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="payroll-toolbar">
+          <select class="select"><option>Tất cả bộ phận</option><option>Nhà hàng</option></select>
+          <input class="input" placeholder="Tìm NV..." style="width:180px">
+          <div class="payroll-total">Tổng NET: <strong>382.540.000 đ</strong></div>
+        </div>
+        <div style="border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">
+          <div style="overflow-x:auto">
+            <table class="tbl tbl-payroll">
+              <thead><tr><th>Mã NV</th><th>Họ tên</th><th>BP</th><th style="text-align:center">Ngày CC</th><th style="text-align:center">OT(h)</th><th class="num">Tiền lương</th><th class="num">PC</th><th class="num">Thưởng</th><th class="num">Gross</th><th class="num">BHXH</th><th class="num">Thuế TNCN</th><th class="num" style="color:var(--green)">NET</th><th></th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><code style="font-family:var(--font-mono);font-size:11px;color:var(--blue)">EC-NVTHUONG</code></td>
+                  <td style="font-weight:500">Nguyễn Văn Thương</td><td>NH</td>
+                  <td style="text-align:center">27.5</td><td style="text-align:center">—</td>
+                  <td class="num">21.153.846</td><td class="num">10.650.000</td><td class="num">17.120.000</td>
+                  <td class="num" style="font-weight:600">48.923.846</td>
+                  <td class="num" style="color:var(--red)">−1.112.213</td>
+                  <td class="num" style="color:var(--red)">−821.163</td>
+                  <td class="num net-cell">46.990.470</td>
+                  <td><button class="btn" style="padding:3px 8px;font-size:11px">✏</button></td>
+                </tr>
+                <tr class="override">
+                  <td><code style="font-family:var(--font-mono);font-size:11px;color:var(--blue)">EC-CMHIEU</code></td>
+                  <td style="font-weight:500">Cao Minh Hiếu</td><td>NH</td>
+                  <td style="text-align:center">25.0</td><td style="text-align:center">—</td>
+                  <td class="num">9.000.000</td><td class="num">1.690.000</td><td class="num">170.000</td>
+                  <td class="num" style="font-weight:600">10.860.000</td>
+                  <td class="num" style="color:var(--text-secondary)">—</td>
+                  <td class="num" style="color:var(--yellow)">233.000 ✏</td>
+                  <td class="num net-cell">10.627.000</td>
+                  <td><button class="btn" style="padding:3px 8px;font-size:11px">✏</button></td>
+                </tr>
+                <tr>
+                  <td><code style="font-family:var(--font-mono);font-size:11px;color:var(--blue)">EC-PQPHONG</code></td>
+                  <td style="font-weight:500">Phạm Quang Phong</td><td>NH</td>
+                  <td style="text-align:center">20.5</td><td style="text-align:center;color:var(--yellow)">32.0h</td>
+                  <td class="num">7.884.615</td><td class="num">3.690.000</td><td class="num">—</td>
+                  <td class="num" style="font-weight:600">12.942.137</td>
+                  <td class="num" style="color:var(--red)">−546.000</td>
+                  <td class="num" style="color:var(--text-secondary)">—</td>
+                  <td class="num net-cell">12.396.137</td>
+                  <td><button class="btn" style="padding:3px 8px;font-size:11px">✏</button></td>
+                </tr>
+                <tr><td colspan="13" style="text-align:center;color:var(--text-muted);font-size:11px">· · · 47 nhân viên tiếp theo · · ·</td></tr>
+              </tbody>
+              <tfoot>
+                <tr style="background:var(--bg-overlay);font-weight:600">
+                  <td colspan="8" style="padding:8px 12px">Tổng cộng (50 NV)</td>
+                  <td class="num" style="padding:8px 12px">436.580.000</td>
+                  <td class="num" style="padding:8px 12px;color:var(--red)">−28.640.000</td>
+                  <td class="num" style="padding:8px 12px;color:var(--red)">−25.400.000</td>
+                  <td class="num" style="padding:8px 12px;color:var(--green);font-size:13px">382.540.000</td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:16px;font-size:11px;color:var(--text-secondary)">
+          <span>Chú thích:</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:rgba(210,153,34,.2);border-radius:2px;display:inline-block"></span> Thuế đã điều chỉnh thủ công</span>
+          <span>✏ màu cam = click xem chi tiết tính toán</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: APPROVAL
+     ══════════════════════════════════ -->
+<div id="s-approval" class="screen">
+  <div class="app-layout">
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="s-title">⏱ PayRoll VN</div><div class="s-sub">Nhà hàng ABC</div></div>
+      <nav class="sidebar-nav">
+        <div class="nav-item"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item"><span class="nav-icon">👥</span> Nhân viên</div>
+        <div class="nav-item"><span class="nav-icon">💰</span> Bảng lương</div>
+        <div class="nav-item active"><span class="nav-icon">✅</span> Phê duyệt <span class="nav-badge">2</span></div>
+        <div class="nav-item"><span class="nav-icon">📄</span> Phiếu lương</div>
+      </nav>
+      <div class="sidebar-user"><div class="avatar av-sm av-red">GĐ</div><div><div class="u-name">Giám đốc</div><div class="u-role">giamdoc@abc.vn</div></div></div>
+    </div>
+    <div class="content-area">
+      <div class="topbar">
+        <div class="topbar-left"><div class="t-title">Phê duyệt lương — Tháng 5/2026</div><div class="t-sub">Giám đốc · Xem xét và quyết định</div></div>
+        <div class="topbar-right">
+          <button class="btn btn-danger">✕ Từ chối</button>
+          <button class="btn btn-primary">✓ Duyệt & Chốt lương</button>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="approval-layout">
+          <div>
+            <div class="card" style="margin-bottom:12px">
+              <div class="panel-title">Tóm tắt kỳ lương</div>
+              <div class="summary-rows">
+                <div class="sum-row"><span style="color:var(--text-secondary)">Tổng nhân viên</span><strong>50</strong></div>
+                <div class="sum-row"><span style="color:var(--text-secondary)">Tổng gross</span><strong>436.580.000 đ</strong></div>
+                <div class="sum-row"><span style="color:var(--text-secondary)">BHXH + Thuế trừ</span><strong style="color:var(--red)">−54.040.000 đ</strong></div>
+                <div class="sum-row total"><span>Quỹ lương NET</span><span>382.540.000 đ</span></div>
+                <div class="sum-row"><span style="color:var(--text-secondary)">So với tháng 4</span><strong style="color:var(--red)">▼ 2.1% (−8.2 tr)</strong></div>
+              </div>
+            </div>
+            <div class="alert alert-warn">⚠️ <span>1 dòng thuế TNCN đã điều chỉnh thủ công: <strong>EC-CMHIEU</strong></span></div>
+          </div>
+          <div class="card">
+            <div class="panel-title">Lịch sử phê duyệt</div>
+            <div class="tl-node">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+                <div class="tl-icon done">✓</div>
+                <div style="width:1px;flex:1;background:var(--border);margin:4px 0;min-height:16px"></div>
+              </div>
+              <div class="tl-body"><div class="tl-title">Kế toán tạo bảng lương</div><div class="tl-meta">ketoan@abc.vn · 10/05 08:30</div></div>
+            </div>
+            <div class="tl-node">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+                <div class="tl-icon done">✓</div>
+                <div style="width:1px;flex:1;background:var(--border);margin:4px 0;min-height:16px"></div>
+              </div>
+              <div class="tl-body"><div class="tl-title">Kế toán trưởng đã duyệt</div><div class="tl-meta">ktruong@abc.vn · 11/05 09:15</div></div>
+            </div>
+            <div class="tl-node">
+              <div class="tl-icon pending">?</div>
+              <div class="tl-body"><div class="tl-title" style="color:var(--yellow)">Chờ Giám đốc duyệt</div><div class="tl-meta">Đang xem xét...</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: PAYSLIP
+     ══════════════════════════════════ -->
+<div id="s-payslip" class="screen">
+  <div class="app-layout">
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="s-title">⏱ PayRoll VN</div><div class="s-sub">Nhà hàng ABC</div></div>
+      <nav class="sidebar-nav">
+        <div class="nav-item"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item"><span class="nav-icon">👥</span> Nhân viên</div>
+        <div class="nav-item"><span class="nav-icon">💰</span> Bảng lương</div>
+        <div class="nav-item"><span class="nav-icon">✅</span> Phê duyệt</div>
+        <div class="nav-item active"><span class="nav-icon">📄</span> Phiếu lương</div>
+      </nav>
+      <div class="sidebar-user"><div class="avatar av-sm av-green">NV</div><div><div class="u-name">Nhân viên</div><div class="u-role">nhanvien@abc.vn</div></div></div>
+    </div>
+    <div class="content-area">
+      <div class="topbar">
+        <div class="topbar-left"><div class="t-title">Phiếu lương</div><div class="t-sub">Tháng 5 / 2026</div></div>
+        <div class="topbar-right">
+          <button class="btn">🖨 In phiếu</button>
+          <button class="btn btn-blue">⬇ Tải PDF</button>
+        </div>
+      </div>
+      <div class="page-body" style="display:flex;justify-content:center">
+        <div class="payslip-wrap">
+          <div class="ps-header">
+            <div style="font-size:22px;margin-bottom:6px">⏱</div>
+            <div class="psh-title">PHIẾU LƯƠNG</div>
+            <div class="psh-sub">Nhà hàng ABC &nbsp;·&nbsp; Tháng 5 / 2026</div>
+          </div>
+          <div class="ps-body">
+            <div class="ps-emp">
+              <div class="avatar av-lg av-green">NVT</div>
+              <div>
+                <div class="pe-name">Nguyễn Văn Thương</div>
+                <div class="pe-meta">EC-NVTHUONG · Nhà hàng · TNC</div>
+              </div>
+              <div class="pe-stat">
+                <div class="ps-days">27.5 <span style="font-size:12px;color:var(--text-secondary)">/ 26</span></div>
+                <div class="ps-days-label">Ngày công</div>
+              </div>
+            </div>
+            <div class="ps-table-wrap">
+              <div>
+                <div class="ps-tbl-title">Thu nhập</div>
+                <div class="ps-row"><span style="color:var(--text-secondary)">Lương theo công</span><span>21.153.846</span></div>
+                <div class="ps-row"><span style="color:var(--text-secondary)">PC trách nhiệm</span><span>10.150.000</span></div>
+                <div class="ps-row"><span style="color:var(--text-secondary)">PC điện thoại</span><span>500.000</span></div>
+                <div class="ps-row"><span style="color:var(--text-secondary)">Thưởng DT</span><span>17.120.000</span></div>
+                <div class="ps-row total-row"><span>Tổng thu nhập</span><span>48.923.846</span></div>
+              </div>
+              <div>
+                <div class="ps-tbl-title">Khấu trừ</div>
+                <div class="ps-row"><span style="color:var(--text-secondary)">BHXH (10.5%)</span><span class="deduct">−1.112.213</span></div>
+                <div class="ps-row"><span style="color:var(--text-secondary)">Thuế TNCN</span><span class="deduct">−821.163</span></div>
+                <div class="ps-row"><span style="color:var(--text-secondary)">Tạm ứng</span><span style="color:var(--text-muted)">—</span></div>
+                <div class="ps-row total-row"><span>Tổng khấu trừ</span><span class="deduct">−1.933.376</span></div>
+              </div>
+            </div>
+            <div class="ps-net">
+              <span class="psn-label">LƯƠNG THỰC LĨNH</span>
+              <span class="psn-amount">46.990.470 đ</span>
+            </div>
+            <div class="ps-words">Bằng chữ: Bốn mươi sáu triệu chín trăm chín mươi nghìn bốn trăm bảy mươi đồng</div>
+            <div class="ps-footer">
+              <div class="pf-bank">Chuyển khoản: ACB ···4521<br>Chốt ngày: 12/05/2026</div>
+              <div style="text-align:right;font-size:11px;color:var(--text-secondary)">
+                Nhân viên ký xác nhận:<br>
+                <span style="display:inline-block;width:120px;border-bottom:1px solid var(--border);margin-top:20px"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SCREEN: SETTINGS
+     ══════════════════════════════════ -->
+<div id="s-settings" class="screen">
+  <div class="app-layout">
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="s-title">⏱ PayRoll VN</div><div class="s-sub">Nhà hàng ABC</div></div>
+      <nav class="sidebar-nav">
+        <div class="nav-item"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item"><span class="nav-icon">👥</span> Nhân viên</div>
+        <div class="nav-item"><span class="nav-icon">💰</span> Bảng lương</div>
+        <div class="nav-item active"><span class="nav-icon">⚙</span> Cấu hình</div>
+      </nav>
+      <div class="sidebar-user"><div class="avatar av-sm av-red">AD</div><div><div class="u-name">Admin</div><div class="u-role">admin@abc.vn</div></div></div>
+    </div>
+    <div class="content-area">
+      <div class="topbar">
+        <div class="topbar-left"><div class="t-title">Cấu hình hệ thống</div><div class="t-sub">Admin only</div></div>
+        <div class="topbar-right"><button class="btn btn-primary">💾 Lưu thay đổi</button></div>
+      </div>
+      <div class="page-body">
+        <div class="settings-grid">
+          <div class="setting-card">
+            <div class="sc-title">⏰ Ngày công & OT</div>
+            <div class="sc-row"><span class="scr-label">Ngày công chuẩn</span><span class="scr-val">26 ngày</span></div>
+            <div class="sc-row"><span class="scr-label">Giờ/ngày mặc định</span><span class="scr-val">8h</span></div>
+            <div class="sc-row"><span class="scr-label">OT ngày thường</span><span class="scr-val">1.5x</span></div>
+            <div class="sc-row"><span class="scr-label">OT cuối tuần</span><span class="scr-val">2.0x</span></div>
+            <div class="sc-row"><span class="scr-label">OT ngày lễ</span><span class="scr-val">3.0x</span></div>
+          </div>
+          <div class="setting-card">
+            <div class="sc-title">💳 BHXH</div>
+            <div class="sc-row"><span class="scr-label">NV đóng (BHXH)</span><span class="scr-val">8%</span></div>
+            <div class="sc-row"><span class="scr-label">NV đóng (BHYT)</span><span class="scr-val">1.5%</span></div>
+            <div class="sc-row"><span class="scr-label">NV đóng (BHTN)</span><span class="scr-val">1%</span></div>
+            <div class="sc-row"><span class="scr-label">Tổng NV đóng</span><span class="scr-val" style="color:var(--yellow)">10.5%</span></div>
+            <div class="sc-row"><span class="scr-label">Công ty đóng</span><span class="scr-val">21.5%</span></div>
+          </div>
+          <div class="setting-card">
+            <div class="sc-title">📊 Thuế TNCN</div>
+            <div class="sc-row"><span class="scr-label">Giảm trừ bản thân</span><span class="scr-val">11 tr/tháng</span></div>
+            <div class="sc-row"><span class="scr-label">Giảm trừ phụ thuộc</span><span class="scr-val">4.4 tr/người</span></div>
+            <div class="sc-row"><span class="scr-label">Bậc 1 (≤5tr)</span><span class="scr-val">5%</span></div>
+            <div class="sc-row"><span class="scr-label">Bậc 2 (5–10tr)</span><span class="scr-val">10%</span></div>
+            <div class="sc-row"><span class="scr-label">Bậc 3 (10–18tr)</span><span class="scr-val">15%</span></div>
+          </div>
+          <div class="setting-card">
+            <div class="sc-title">📅 Ngày lễ 2026</div>
+            <div class="sc-row"><span class="scr-label">Tết Dương lịch</span><span class="scr-val">01/01</span></div>
+            <div class="sc-row"><span class="scr-label">Tết Nguyên Đán</span><span class="scr-val">28/01–02/02</span></div>
+            <div class="sc-row"><span class="scr-label">Giỗ Tổ Hùng Vương</span><span class="scr-val">16/04</span></div>
+            <div class="sc-row"><span class="scr-label">30/04 & 01/05</span><span class="scr-val">30/04–01/05</span></div>
+            <div class="sc-row"><span class="scr-label">Quốc khánh</span><span class="scr-val">02/09</span></div>
+          </div>
+          <div class="setting-card">
+            <div class="sc-title">🏢 Thông tin công ty</div>
+            <div class="sc-row"><span class="scr-label">Tên công ty</span><span class="scr-val">Nhà hàng ABC</span></div>
+            <div class="sc-row"><span class="scr-label">Logo</span><span class="scr-val"><button class="btn" style="font-size:11px;padding:3px 8px">Upload</button></span></div>
+            <div class="sc-row"><span class="scr-label">Màu chủ đạo</span><span class="scr-val">#f0c040</span></div>
+          </div>
+          <div class="setting-card">
+            <div class="sc-title">👤 Quản lý tài khoản</div>
+            <div class="sc-row"><span class="scr-label">admin@abc.vn</span><span class="badge badge-red">ADMIN</span></div>
+            <div class="sc-row"><span class="scr-label">giamdoc@abc.vn</span><span class="badge badge-yellow">GIAMDOC</span></div>
+            <div class="sc-row"><span class="scr-label">ketoan@abc.vn</span><span class="badge badge-blue">KETOAN</span></div>
+            <div class="sc-row"><span class="scr-label">+ Thêm tài khoản</span><span><button class="btn btn-blue" style="font-size:11px;padding:3px 10px">+ Thêm</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

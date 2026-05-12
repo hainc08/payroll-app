@@ -1,0 +1,157 @@
+<div style="font-size:13px;color:var(--color-text-primary)">
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden">
+
+  <!-- Page header -->
+  <div style="padding:14px 20px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:15px;font-weight:500">Mapping mã nhân viên</div>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Liên kết mã máy chấm công ↔ mã lương hệ thống</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-size:11px;background:var(--color-background-success);color:var(--color-text-success);padding:3px 10px;border-radius:10px;border:0.5px solid var(--color-border-success)">49 đã map</span>
+      <span style="font-size:11px;background:var(--color-background-danger);color:var(--color-text-danger);padding:3px 10px;border-radius:10px;border:0.5px solid var(--color-border-danger)">1 chưa map</span>
+      <button style="font-size:12px;padding:6px 12px;display:flex;align-items:center;gap:4px">
+        <i class="ti ti-upload" style="font-size:14px" aria-hidden="true"></i> Import mapping Excel
+      </button>
+      <button style="font-size:12px;padding:6px 12px;display:flex;align-items:center;gap:4px;background:var(--color-background-info);color:var(--color-text-info);border-color:var(--color-border-info)">
+        <i class="ti ti-download" style="font-size:14px" aria-hidden="true"></i> Xuất danh sách
+      </button>
+    </div>
+  </div>
+
+  <!-- Info banner -->
+  <div style="padding:10px 20px;background:var(--color-background-info);border-bottom:0.5px solid var(--color-border-info);display:flex;align-items:flex-start;gap:10px">
+    <i class="ti ti-info-circle" style="font-size:16px;color:var(--color-text-info);margin-top:1px;flex-shrink:0" aria-hidden="true"></i>
+    <div style="font-size:12px;color:var(--color-text-info)">
+      <strong>Hướng dẫn:</strong> Chọn mã máy chấm công bên trái → Tìm và gán nhân viên tương ứng bên phải. Mapping chỉ cần làm 1 lần. Mã chưa được map sẽ bị chặn khi import chấm công.
+    </div>
+  </div>
+
+  <!-- Filter bar -->
+  <div style="padding:10px 20px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:10px">
+    <input type="text" placeholder="Tìm mã máy hoặc tên..." style="font-size:12px;padding:5px 10px;width:220px">
+    <div style="display:flex;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);overflow:hidden">
+      <button style="font-size:12px;padding:5px 12px;border:none;border-radius:0;background:var(--color-background-info);color:var(--color-text-info)">Tất cả (50)</button>
+      <button style="font-size:12px;padding:5px 12px;border:none;border-radius:0;background:transparent;color:var(--color-text-secondary);border-left:0.5px solid var(--color-border-tertiary)">Đã map (49)</button>
+      <button style="font-size:12px;padding:5px 12px;border:none;border-radius:0;background:transparent;color:var(--color-text-danger);border-left:0.5px solid var(--color-border-tertiary)">Chưa map (1)</button>
+    </div>
+    <span style="margin-left:auto;font-size:11px;color:var(--color-text-secondary)">Cập nhật lần cuối: 10/05/2026</span>
+  </div>
+
+  <!-- Two-column mapping table -->
+  <div style="display:grid;grid-template-columns:1fr 20px 1fr;background:var(--color-background-primary)">
+
+    <!-- Left header -->
+    <div style="padding:8px 16px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);border-right:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:11px;font-weight:500;color:var(--color-text-secondary)">MÃ MÁY CHẤM CÔNG</div>
+    </div>
+    <div style="background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary)"></div>
+    <!-- Right header -->
+    <div style="padding:8px 16px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);border-left:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:11px;font-weight:500;color:var(--color-text-secondary)">NHÂN VIÊN HỆ THỐNG (MÃ LƯƠNG)</div>
+    </div>
+
+    <!-- Row 1 — mapped ok -->
+    <div style="padding:10px 16px;border-bottom:0.5px solid var(--color-border-tertiary);border-right:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:10px">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--color-background-success);border:1.5px solid var(--color-border-success);flex-shrink:0"></div>
+      <div>
+        <div style="font-size:13px;font-weight:500">00002</div>
+        <div style="font-size:11px;color:var(--color-text-secondary)">Pham Thi Ngoc Bich · VP</div>
+      </div>
+    </div>
+    <div style="border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:center">
+      <i class="ti ti-arrows-right-left" style="font-size:14px;color:var(--color-text-success)" aria-hidden="true"></i>
+    </div>
+    <div style="padding:10px 16px;border-bottom:0.5px solid var(--color-border-tertiary);border-left:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--color-background-success);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--color-text-success)">PB</div>
+        <div>
+          <div style="font-size:12px;font-weight:500">Phạm Thị Ngọc Bích</div>
+          <div style="font-size:11px;color:var(--color-text-secondary)">EC-PTNBICH · Văn phòng</div>
+        </div>
+      </div>
+      <button style="font-size:11px;padding:3px 8px;color:var(--color-text-secondary)"><i class="ti ti-edit" style="font-size:13px" aria-hidden="true"></i></button>
+    </div>
+
+    <!-- Row 2 — mapped ok -->
+    <div style="padding:10px 16px;border-bottom:0.5px solid var(--color-border-tertiary);border-right:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:10px">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--color-background-success);border:1.5px solid var(--color-border-success);flex-shrink:0"></div>
+      <div>
+        <div style="font-size:13px;font-weight:500">00015</div>
+        <div style="font-size:11px;color:var(--color-text-secondary)">Nguyen The Thai · B</div>
+      </div>
+    </div>
+    <div style="border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:center">
+      <i class="ti ti-arrows-right-left" style="font-size:14px;color:var(--color-text-success)" aria-hidden="true"></i>
+    </div>
+    <div style="padding:10px 16px;border-bottom:0.5px solid var(--color-border-tertiary);border-left:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--color-background-info);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--color-text-info)">NT</div>
+        <div>
+          <div style="font-size:12px;font-weight:500">Nguyễn Thế Thái</div>
+          <div style="font-size:11px;color:var(--color-text-secondary)">EC-NTHAI · Nhà hàng</div>
+        </div>
+      </div>
+      <button style="font-size:11px;padding:3px 8px;color:var(--color-text-secondary)"><i class="ti ti-edit" style="font-size:13px" aria-hidden="true"></i></button>
+    </div>
+
+    <!-- Row 3 — UNMAPPED (highlighted) -->
+    <div style="padding:10px 16px;border-bottom:0.5px solid var(--color-border-tertiary);border-right:0.5px solid var(--color-border-tertiary);background:var(--color-background-danger);display:flex;align-items:center;gap:10px">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--color-background-danger);border:1.5px solid var(--color-border-danger);flex-shrink:0"></div>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:var(--color-text-danger)">00999</div>
+        <div style="font-size:11px;color:var(--color-text-danger)">Unknown · chưa xác định</div>
+      </div>
+      <span style="margin-left:auto;font-size:10px;background:var(--color-background-danger);color:var(--color-text-danger);padding:2px 7px;border-radius:10px;border:0.5px solid var(--color-border-danger)">Chưa map</span>
+    </div>
+    <div style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-danger);display:flex;align-items:center;justify-content:center">
+      <i class="ti ti-question-mark" style="font-size:14px;color:var(--color-text-danger)" aria-hidden="true"></i>
+    </div>
+    <div style="padding:10px 16px;border-bottom:0.5px solid var(--color-border-tertiary);border-left:0.5px solid var(--color-border-tertiary);background:var(--color-background-danger);display:flex;align-items:center;gap:8px">
+      <select style="font-size:12px;padding:5px 10px;flex:1;border-color:var(--color-border-danger)">
+        <option value="">-- Chọn nhân viên để gán --</option>
+        <option>Nguyễn Văn An · EC-NVAN</option>
+        <option>Trần Thị Bình · EC-TTBINH</option>
+      </select>
+      <button style="font-size:12px;padding:5px 12px;background:var(--color-background-danger);color:var(--color-text-danger);border-color:var(--color-border-danger)">Gán</button>
+    </div>
+
+    <!-- Row 4 -->
+    <div style="padding:10px 16px;border-bottom:0.5px solid var(--color-border-tertiary);border-right:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:10px">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--color-background-success);border:1.5px solid var(--color-border-success);flex-shrink:0"></div>
+      <div>
+        <div style="font-size:13px;font-weight:500">00026</div>
+        <div style="font-size:11px;color:var(--color-text-secondary)">Nguyen Thi Lien · T</div>
+      </div>
+    </div>
+    <div style="border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:center">
+      <i class="ti ti-arrows-right-left" style="font-size:14px;color:var(--color-text-success)" aria-hidden="true"></i>
+    </div>
+    <div style="padding:10px 16px;border-bottom:0.5px solid var(--color-border-tertiary);border-left:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--color-background-warning);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--color-text-warning)">NL</div>
+        <div>
+          <div style="font-size:12px;font-weight:500">Nguyễn Thị Liên</div>
+          <div style="font-size:11px;color:var(--color-text-secondary)">EC-NTLIEN · Nhà hàng</div>
+        </div>
+      </div>
+      <button style="font-size:11px;padding:3px 8px;color:var(--color-text-secondary)"><i class="ti ti-edit" style="font-size:13px" aria-hidden="true"></i></button>
+    </div>
+
+    <!-- Ellipsis row -->
+    <div style="padding:8px 16px;border-right:0.5px solid var(--color-border-tertiary);text-align:center;color:var(--color-text-secondary);font-size:11px">· · · 46 mã tiếp theo · · ·</div>
+    <div></div>
+    <div style="padding:8px 16px;border-left:0.5px solid var(--color-border-tertiary);text-align:center;color:var(--color-text-secondary);font-size:11px">· · ·</div>
+  </div>
+
+  <!-- Audit log section -->
+  <div style="padding:10px 20px;background:var(--color-background-secondary);border-top:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:16px">
+    <i class="ti ti-history" style="font-size:14px;color:var(--color-text-secondary)" aria-hidden="true"></i>
+    <span style="font-size:11px;color:var(--color-text-secondary)">Lịch sử thay đổi mapping:</span>
+    <span style="font-size:11px">00043 → EC-TVDON &nbsp;·&nbsp; <span style="color:var(--color-text-secondary)">ketoan@abc.vn · 08/05 10:22</span></span>
+    <span style="font-size:11px">00162 → EC-PQPHONG &nbsp;·&nbsp; <span style="color:var(--color-text-secondary)">admin · 01/04 09:00</span></span>
+    <button style="margin-left:auto;font-size:11px;padding:3px 10px">Xem đầy đủ</button>
+  </div>
+</div>
+<div style="margin-top:8px;font-size:11px;color:var(--color-text-secondary);text-align:center">Màn hình 6 — Mapping mã NV (role: Admin / Kế toán)</div>
+</div>

@@ -1,0 +1,140 @@
+<div style="font-size:13px;color:var(--color-text-primary)">
+
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden">
+
+  <!-- Header -->
+  <div style="padding:14px 20px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between;background:var(--color-background-primary)">
+    <div>
+      <div style="font-size:15px;font-weight:500">Bảng lương Tháng 5/2026</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+        <span style="font-size:11px;background:var(--color-background-warning);color:var(--color-text-warning);padding:2px 10px;border-radius:10px;border:0.5px solid var(--color-border-warning)">⏳ Chờ KT duyệt</span>
+        <span style="font-size:11px;color:var(--color-text-secondary)">Tạo: 10/05/2026 · 50 nhân viên</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button style="font-size:12px;padding:6px 12px;display:flex;align-items:center;gap:4px">
+        <i class="ti ti-download" aria-hidden="true"></i> Xuất Excel
+      </button>
+      <button style="font-size:12px;padding:6px 14px;background:var(--color-background-success);color:var(--color-text-success);border-color:var(--color-border-success)">
+        <i class="ti ti-circle-check" aria-hidden="true"></i> Submit phê duyệt
+      </button>
+    </div>
+  </div>
+
+  <!-- Filters + summary -->
+  <div style="padding:10px 20px;background:var(--color-background-secondary);border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:10px">
+    <select style="font-size:12px;padding:4px 10px">
+      <option>Tất cả bộ phận</option>
+      <option>Nhà hàng</option>
+      <option>Văn phòng</option>
+    </select>
+    <input type="text" placeholder="Tìm tên / mã NV..." style="font-size:12px;padding:4px 10px;width:180px">
+    <div style="margin-left:auto;font-size:12px;color:var(--color-text-secondary)">
+      Tổng quỹ lương NET: <strong style="color:var(--color-text-primary);font-size:14px">382.540.000 đ</strong>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:11px;min-width:900px">
+      <thead>
+        <tr style="background:var(--color-background-secondary)">
+          <th style="padding:6px 10px;text-align:left;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap">Mã NV</th>
+          <th style="padding:6px 10px;text-align:left;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap">Họ tên</th>
+          <th style="padding:6px 10px;text-align:center;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap">Ngày công</th>
+          <th style="padding:6px 10px;text-align:center;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap">OT (h)</th>
+          <th style="padding:6px 10px;text-align:right;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap">Tiền lương</th>
+          <th style="padding:6px 10px;text-align:right;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap">Phụ cấp</th>
+          <th style="padding:6px 10px;text-align:right;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap">Thưởng</th>
+          <th style="padding:6px 10px;text-align:right;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap">Tổng gross</th>
+          <th style="padding:6px 10px;text-align:right;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap">BHXH</th>
+          <th style="padding:6px 10px;text-align:right;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap">Thuế TNCN</th>
+          <th style="padding:6px 10px;text-align:right;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary);white-space:nowrap;color:var(--color-text-success)">NET thực lĩnh</th>
+          <th style="padding:6px 10px;text-align:center;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Row 1 -->
+        <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+          <td style="padding:6px 10px;font-weight:500">EC-NVTHUONG</td>
+          <td style="padding:6px 10px">Nguyễn Văn Thương</td>
+          <td style="padding:6px 10px;text-align:center">27.5</td>
+          <td style="padding:6px 10px;text-align:center">—</td>
+          <td style="padding:6px 10px;text-align:right">21.153.846</td>
+          <td style="padding:6px 10px;text-align:right">10.650.000</td>
+          <td style="padding:6px 10px;text-align:right">17.120.000</td>
+          <td style="padding:6px 10px;text-align:right;font-weight:500">48.923.846</td>
+          <td style="padding:6px 10px;text-align:right;color:var(--color-text-danger)">-1.112.213</td>
+          <td style="padding:6px 10px;text-align:right;color:var(--color-text-danger)">-821.163</td>
+          <td style="padding:6px 10px;text-align:right;font-weight:500;color:var(--color-text-success)">46.990.470</td>
+          <td style="padding:6px 10px;text-align:center">
+            <button style="font-size:11px;padding:3px 8px" title="Chỉnh sửa"><i class="ti ti-edit" style="font-size:13px" aria-hidden="true"></i></button>
+          </td>
+        </tr>
+        <!-- Row 2 override -->
+        <tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-warning)">
+          <td style="padding:6px 10px;font-weight:500">EC-CMHIEU</td>
+          <td style="padding:6px 10px">Cao Minh Hiếu</td>
+          <td style="padding:6px 10px;text-align:center">25.0</td>
+          <td style="padding:6px 10px;text-align:center">—</td>
+          <td style="padding:6px 10px;text-align:right">9.000.000</td>
+          <td style="padding:6px 10px;text-align:right">1.690.000</td>
+          <td style="padding:6px 10px;text-align:right">170.000</td>
+          <td style="padding:6px 10px;text-align:right;font-weight:500">10.860.000</td>
+          <td style="padding:6px 10px;text-align:right;color:var(--color-text-danger)">—</td>
+          <td style="padding:6px 10px;text-align:right">
+            <span style="color:var(--color-text-warning)">233.000 ✏</span>
+          </td>
+          <td style="padding:6px 10px;text-align:right;font-weight:500;color:var(--color-text-success)">10.627.000</td>
+          <td style="padding:6px 10px;text-align:center">
+            <button style="font-size:11px;padding:3px 8px"><i class="ti ti-edit" style="font-size:13px" aria-hidden="true"></i></button>
+          </td>
+        </tr>
+        <!-- Row 3 -->
+        <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+          <td style="padding:6px 10px;font-weight:500">EC-PQPHONG</td>
+          <td style="padding:6px 10px">Phạm Quang Phong</td>
+          <td style="padding:6px 10px;text-align:center">20.5</td>
+          <td style="padding:6px 10px;text-align:center;color:var(--color-text-warning)">32.0h</td>
+          <td style="padding:6px 10px;text-align:right">7.884.615</td>
+          <td style="padding:6px 10px;text-align:right">3.690.000</td>
+          <td style="padding:6px 10px;text-align:right">—</td>
+          <td style="padding:6px 10px;text-align:right;font-weight:500">12.942.137</td>
+          <td style="padding:6px 10px;text-align:right;color:var(--color-text-danger)">-546.000</td>
+          <td style="padding:6px 10px;text-align:right">—</td>
+          <td style="padding:6px 10px;text-align:right;font-weight:500;color:var(--color-text-success)">12.396.137</td>
+          <td style="padding:6px 10px;text-align:center">
+            <button style="font-size:11px;padding:3px 8px"><i class="ti ti-edit" style="font-size:13px" aria-hidden="true"></i></button>
+          </td>
+        </tr>
+        <!-- More rows indicator -->
+        <tr>
+          <td colspan="12" style="padding:8px 10px;text-align:center;color:var(--color-text-secondary);font-size:11px">
+            · · · 47 nhân viên tiếp theo · · ·
+          </td>
+        </tr>
+      </tbody>
+      <!-- Footer total -->
+      <tfoot>
+        <tr style="background:var(--color-background-secondary);font-weight:500">
+          <td colspan="7" style="padding:8px 10px;font-size:12px">Tổng cộng (50 NV)</td>
+          <td style="padding:8px 10px;text-align:right;font-size:12px">436.580.000</td>
+          <td style="padding:8px 10px;text-align:right;font-size:12px;color:var(--color-text-danger)">-28.640.000</td>
+          <td style="padding:8px 10px;text-align:right;font-size:12px;color:var(--color-text-danger)">-25.400.000</td>
+          <td style="padding:8px 10px;text-align:right;font-size:13px;color:var(--color-text-success)">382.540.000</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- Legend -->
+  <div style="padding:8px 16px;background:var(--color-background-secondary);border-top:0.5px solid var(--color-border-tertiary);display:flex;gap:16px">
+    <span style="font-size:11px;color:var(--color-text-secondary)">Chú thích:</span>
+    <span style="font-size:11px;display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:var(--color-background-warning);border-radius:2px;display:inline-block"></span> Thuế đã điều chỉnh thủ công</span>
+    <span style="font-size:11px;display:flex;align-items:center;gap:4px"><span style="color:var(--color-text-warning)">✏</span> Click để xem chi tiết tính toán</span>
+  </div>
+</div>
+
+<div style="margin-top:8px;font-size:11px;color:var(--color-text-secondary);text-align:center">Màn hình 3 — Bảng lương (role: Kế toán · trạng thái: Chờ duyệt)</div>
+</div>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Phiếu lương {{periodName}}</title>
+    <style>
+        @font-face {
+            font-family: 'Inter';
+            src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        }
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            color: #1a1a1a;
+            line-height: 1.5;
+            background: #fff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #e5e7eb;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #111827;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .header p {
+            margin: 5px 0 0;
+            font-size: 16px;
+            color: #6b7280;
+            font-weight: 600;
+        }
+        .employee-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+        .avatar {
+            width: 64px;
+            height: 64px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        .info-text h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #111827;
+        }
+        .info-text p {
+            margin: 4px 0 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        .column-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #374151;
+            text-transform: uppercase;
+            border-bottom: 1px solid #d1d5db;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .row .label {
+            color: #4b5563;
+        }
+        .row .value {
+            font-weight: 600;
+            color: #111827;
+        }
+        .negative {
+            color: #dc2626 !important;
+        }
+        .total-row {
+            border-top: 1px dashed #d1d5db;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+        .net-salary-box {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .net-salary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .net-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+        }
+        .net-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: #2563eb;
+        }
+        .net-words {
+            font-style: italic;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .footer {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #4b5563;
+        }
+        .signature {
+            text-align: center;
+            width: 200px;
+        }
+        .signature-line {
+            margin-top: 60px;
+            border-top: 1px solid #9ca3af;
+        }
+        @media print {
+            body { padding: 0; }
+            .container { border: none; box-shadow: none; }
+            .page-break { page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>PHIẾU LƯƠNG — {{periodName}}</h1>
+            <p>{{companyName}}</p>
+        </div>
+
+        <div class="employee-info">
+            <div class="avatar">{{avatarInitials}}</div>
+            <div class="info-text">
+                <h2>{{fullName}}</h2>
+                <p>{{employeeId}} · {{department}} · {{employmentType}}</p>
+                <p>Ngày công: {{actualWorkDays}} / {{stdWorkDays}}</p>
+            </div>
+        </div>
+
+        <div class="details-grid">
+            <div class="income-col">
+                <div class="column-title">THU NHẬP</div>
+                <div class="row"><span class="label">Lương theo công</span><span class="value">{{salaryByWorkDays}}</span></div>
+                <div class="row"><span class="label">Lương tăng ca (OT)</span><span class="value">{{overtimePay}}</span></div>
+                <div class="row"><span class="label">Phụ cấp trách nhiệm</span><span class="value">{{allowanceResponsibility}}</span></div>
+                <div class="row"><span class="label">Trợ cấp điện thoại</span><span class="value">{{allowancePhone}}</span></div>
+                <div class="row"><span class="label">Trợ cấp xăng xe/khác</span><span class="value">{{allowanceTransport}}</span></div>
+                <div class="row"><span class="label">Thưởng doanh thu</span><span class="value">{{bonusRevenue}}</span></div>
+                <div class="row total-row"><span class="label">Tổng thu nhập</span><span class="value">{{totalIncome}}</span></div>
+            </div>
+            <div class="deduction-col">
+                <div class="column-title">KHẤU TRỪ</div>
+                <div class="row"><span class="label">BHXH (10.5%)</span><span class="value negative">{{socialInsurance}}</span></div>
+                <div class="row"><span class="label">Thuế TNCN</span><span class="value negative">{{taxIncome}}</span></div>
+                <div class="row"><span class="label">Tạm ứng</span><span class="value negative">{{advancePayment}}</span></div>
+                <div class="row"><span class="label">Giảm trừ khác</span><span class="value negative">{{otherDeductions}}</span></div>
+                <div class="row total-row"><span class="label">Tổng khấu trừ</span><span class="value negative">{{totalDeductions}}</span></div>
+            </div>
+        </div>
+
+        <div class="net-salary-box">
+            <div class="net-salary">
+                <span class="net-label">💰 LƯƠNG THỰC LĨNH:</span>
+                <span class="net-value">{{netSalary}} đ</span>
+            </div>
+            <div class="net-words">Bằng chữ: {{netSalaryWords}}</div>
+        </div>
+
+        <div class="footer">
+            <div>Chốt ngày: {{currentDate}}</div>
+            <div class="signature">
+                Nhân viên ký xác nhận
+                <div class="signature-line"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

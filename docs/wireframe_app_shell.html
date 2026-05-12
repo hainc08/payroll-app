@@ -1,0 +1,149 @@
+<div style="font-size:13px;color:var(--color-text-primary)">
+
+<!-- App Shell -->
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;display:flex;height:560px">
+
+  <!-- Sidebar -->
+  <div style="width:200px;background:var(--color-background-secondary);border-right:0.5px solid var(--color-border-tertiary);display:flex;flex-direction:column;flex-shrink:0">
+    <!-- Logo -->
+    <div style="padding:16px 14px 12px;border-bottom:0.5px solid var(--color-border-tertiary)">
+      <div style="font-size:14px;font-weight:500">⏱ PayRoll VN</div>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Nhà hàng ABC</div>
+    </div>
+
+    <!-- Nav items -->
+    <nav style="padding:8px 0;flex:1">
+      <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;background:var(--color-background-info);border-left:2px solid var(--color-border-info);color:var(--color-text-info)">
+        <i class="ti ti-layout-dashboard" style="font-size:16px" aria-hidden="true"></i>
+        <span style="font-size:13px;font-weight:500">Dashboard</span>
+      </div>
+      <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;color:var(--color-text-secondary)">
+        <i class="ti ti-users" style="font-size:16px" aria-hidden="true"></i>
+        <span style="font-size:13px">Nhân viên</span>
+      </div>
+      <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;color:var(--color-text-secondary)">
+        <i class="ti ti-clock" style="font-size:16px" aria-hidden="true"></i>
+        <span style="font-size:13px">Chấm công</span>
+      </div>
+      <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;color:var(--color-text-secondary)">
+        <i class="ti ti-report-money" style="font-size:16px" aria-hidden="true"></i>
+        <span style="font-size:13px">Bảng lương</span>
+      </div>
+      <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;color:var(--color-text-secondary)">
+        <i class="ti ti-circle-check" style="font-size:16px" aria-hidden="true"></i>
+        <span style="font-size:13px">Phê duyệt</span>
+        <span style="margin-left:auto;background:var(--color-background-danger);color:var(--color-text-danger);font-size:11px;padding:1px 6px;border-radius:10px">2</span>
+      </div>
+      <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;color:var(--color-text-secondary)">
+        <i class="ti ti-file-text" style="font-size:16px" aria-hidden="true"></i>
+        <span style="font-size:13px">Phiếu lương</span>
+      </div>
+      <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;color:var(--color-text-secondary)">
+        <i class="ti ti-chart-bar" style="font-size:16px" aria-hidden="true"></i>
+        <span style="font-size:13px">Báo cáo</span>
+      </div>
+      <div style="margin-top:8px;padding:7px 14px;display:flex;align-items:center;gap:8px;color:var(--color-text-secondary)">
+        <i class="ti ti-settings" style="font-size:16px" aria-hidden="true"></i>
+        <span style="font-size:13px">Cấu hình</span>
+      </div>
+    </nav>
+
+    <!-- User badge -->
+    <div style="padding:10px 14px;border-top:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:8px">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--color-background-info);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--color-text-info)">KT</div>
+      <div>
+        <div style="font-size:12px;font-weight:500">Kế toán</div>
+        <div style="font-size:11px;color:var(--color-text-secondary)">ketoan@abc.vn</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content area -->
+  <div style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+
+    <!-- Top bar -->
+    <div style="padding:12px 20px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div style="font-size:15px;font-weight:500">Dashboard</div>
+        <div style="font-size:11px;color:var(--color-text-secondary)">Tháng 5/2026</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button style="font-size:12px;padding:6px 12px;display:flex;align-items:center;gap:4px">
+          <i class="ti ti-bell" style="font-size:14px" aria-hidden="true"></i> 2
+        </button>
+        <button style="font-size:12px;padding:6px 14px;background:var(--color-background-info);color:var(--color-text-info);border:0.5px solid var(--color-border-info)">
+          + Tạo bảng lương
+        </button>
+      </div>
+    </div>
+
+    <!-- Dashboard content -->
+    <div style="padding:16px 20px;flex:1;overflow-y:auto">
+
+      <!-- KPI row -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
+        <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px">
+          <div style="font-size:11px;color:var(--color-text-secondary)">Tổng nhân viên</div>
+          <div style="font-size:22px;font-weight:500;margin-top:4px">50</div>
+          <div style="font-size:11px;color:var(--color-text-success);margin-top:2px">↑ 2 mới tháng này</div>
+        </div>
+        <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px">
+          <div style="font-size:11px;color:var(--color-text-secondary)">Quỹ lương NET</div>
+          <div style="font-size:18px;font-weight:500;margin-top:4px">382,5 tr</div>
+          <div style="font-size:11px;color:var(--color-text-danger);margin-top:2px">↓ 2.1% vs tháng trước</div>
+        </div>
+        <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px">
+          <div style="font-size:11px;color:var(--color-text-secondary)">Trạng thái lương</div>
+          <div style="font-size:14px;font-weight:500;margin-top:4px;color:var(--color-text-warning)">⏳ Chờ GĐ duyệt</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Tháng 5/2026</div>
+        </div>
+        <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px">
+          <div style="font-size:11px;color:var(--color-text-secondary)">Chấm công lỗi</div>
+          <div style="font-size:22px;font-weight:500;margin-top:4px;color:var(--color-text-danger)">4</div>
+          <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">cần xác nhận</div>
+        </div>
+      </div>
+
+      <!-- Recent activity + quick actions -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:14px">
+          <div style="font-size:12px;font-weight:500;margin-bottom:10px">Hoạt động gần đây</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:8px;font-size:11px">
+              <i class="ti ti-upload" style="font-size:14px;color:var(--color-text-info)" aria-hidden="true"></i>
+              <span>Import chấm công T5 — <span style="color:var(--color-text-secondary)">10 phút trước</span></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:11px">
+              <i class="ti ti-edit" style="font-size:14px;color:var(--color-text-warning)" aria-hidden="true"></i>
+              <span>Sửa lương NV00162 — <span style="color:var(--color-text-secondary)">1h trước</span></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:11px">
+              <i class="ti ti-circle-check" style="font-size:14px;color:var(--color-text-success)" aria-hidden="true"></i>
+              <span>Kế toán chốt bảng lương — <span style="color:var(--color-text-secondary)">2h trước</span></span>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:14px">
+          <div style="font-size:12px;font-weight:500;margin-bottom:10px">Việc cần làm</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px">
+              <span style="color:var(--color-text-danger)">● 4 bản ghi thiếu giờ ra</span>
+              <button style="font-size:11px;padding:3px 8px">Xử lý</button>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px">
+              <span style="color:var(--color-text-warning)">● Bảng lương chờ GĐ duyệt</span>
+              <button style="font-size:11px;padding:3px 8px">Nhắc nhở</button>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px">
+              <span style="color:var(--color-text-secondary)">● Xuất phiếu lương sau duyệt</span>
+              <button style="font-size:11px;padding:3px 8px;opacity:0.5" disabled>Chờ duyệt</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:8px;font-size:11px;color:var(--color-text-secondary);text-align:center">Màn hình 1 — App shell + Dashboard (role: Kế toán)</div>
+</div>

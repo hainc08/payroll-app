@@ -1,0 +1,147 @@
+<div style="font-size:13px;color:var(--color-text-primary)">
+
+<!-- Màn hình Import Chấm công -->
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden">
+
+  <!-- Page header -->
+  <div style="padding:14px 20px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between;background:var(--color-background-primary)">
+    <div>
+      <div style="font-size:15px;font-weight:500">Import Chấm công</div>
+      <div style="font-size:11px;color:var(--color-text-secondary)">Chấm công → Import file Excel</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <select style="font-size:12px;padding:5px 10px">
+        <option>Tháng 5 / 2026</option>
+      </select>
+      <button style="font-size:12px;padding:6px 14px;color:var(--color-text-success);border-color:var(--color-border-success)">
+        <i class="ti ti-check" aria-hidden="true"></i> Xác nhận import
+      </button>
+    </div>
+  </div>
+
+  <div style="padding:16px 20px;display:flex;flex-direction:column;gap:14px;background:var(--color-background-primary)">
+
+    <!-- Step indicator -->
+    <div style="display:flex;align-items:center;gap:0">
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-info)">
+        <div style="width:22px;height:22px;border-radius:50%;background:var(--color-background-info);border:1px solid var(--color-border-info);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--color-text-info)">✓</div>
+        Upload file
+      </div>
+      <div style="flex:1;height:1px;background:var(--color-border-info);margin:0 8px"></div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-info)">
+        <div style="width:22px;height:22px;border-radius:50%;background:var(--color-background-info);border:1px solid var(--color-border-info);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--color-text-info)">✓</div>
+        Parse &amp; validate
+      </div>
+      <div style="flex:1;height:1px;background:var(--color-border-info);margin:0 8px"></div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--color-text-info)">
+        <div style="width:22px;height:22px;border-radius:50%;background:var(--color-background-info);border:1.5px solid var(--color-border-info);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;color:var(--color-text-info)">3</div>
+        Review &amp; xác nhận
+      </div>
+      <div style="flex:1;height:1px;background:var(--color-border-tertiary);margin:0 8px"></div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-secondary)">
+        <div style="width:22px;height:22px;border-radius:50%;border:1px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--color-text-secondary)">4</div>
+        Lưu vào DB
+      </div>
+    </div>
+
+    <!-- Alert bar -->
+    <div style="background:var(--color-background-warning);border:0.5px solid var(--color-border-warning);border-radius:var(--border-radius-md);padding:8px 12px;display:flex;align-items:center;gap:8px">
+      <i class="ti ti-alert-triangle" style="font-size:16px;color:var(--color-text-warning)" aria-hidden="true"></i>
+      <span style="font-size:12px;color:var(--color-text-warning)"><strong>4 bản ghi cần xử lý:</strong> 3 thiếu giờ ra · 1 mã NV chưa có mapping</span>
+      <button style="margin-left:auto;font-size:11px;padding:3px 10px;color:var(--color-text-warning);border-color:var(--color-border-warning)">Xem chi tiết</button>
+    </div>
+
+    <!-- Summary stats -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+      <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;text-align:center">
+        <div style="font-size:18px;font-weight:500">50</div>
+        <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Nhân viên</div>
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;text-align:center">
+        <div style="font-size:18px;font-weight:500">842</div>
+        <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Bản ghi</div>
+      </div>
+      <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px;text-align:center">
+        <div style="font-size:18px;font-weight:500;color:var(--color-text-success)">838</div>
+        <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Hợp lệ</div>
+      </div>
+      <div style="background:var(--color-background-warning);border-radius:var(--border-radius-md);padding:10px;text-align:center">
+        <div style="font-size:18px;font-weight:500;color:var(--color-text-warning)">3</div>
+        <div style="font-size:11px;color:var(--color-text-warning);margin-top:2px">Thiếu giờ ra</div>
+      </div>
+      <div style="background:var(--color-background-danger);border-radius:var(--border-radius-md);padding:10px;text-align:center">
+        <div style="font-size:18px;font-weight:500;color:var(--color-text-danger)">1</div>
+        <div style="font-size:11px;color:var(--color-text-danger);margin-top:2px">Chưa mapping</div>
+      </div>
+    </div>
+
+    <!-- Data preview table -->
+    <div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);overflow:hidden">
+      <div style="padding:8px 12px;background:var(--color-background-secondary);display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:12px;font-weight:500">Preview dữ liệu</span>
+        <div style="display:flex;gap:6px">
+          <select style="font-size:11px;padding:3px 8px">
+            <option>Tất cả</option>
+            <option>Lỗi / Cảnh báo</option>
+          </select>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:11px">
+          <thead>
+            <tr style="background:var(--color-background-secondary)">
+              <th style="padding:6px 10px;text-align:left;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)">Mã máy CC</th>
+              <th style="padding:6px 10px;text-align:left;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)">Tên NV</th>
+              <th style="padding:6px 10px;text-align:left;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)">Ngày</th>
+              <th style="padding:6px 10px;text-align:center;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)">Vào 1</th>
+              <th style="padding:6px 10px;text-align:center;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)">Ra 1</th>
+              <th style="padding:6px 10px;text-align:center;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)">Tổng giờ</th>
+              <th style="padding:6px 10px;text-align:center;font-weight:500;border-bottom:0.5px solid var(--color-border-tertiary)">Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+              <td style="padding:6px 10px">00002</td>
+              <td style="padding:6px 10px">Pham Thi Ngoc Bich</td>
+              <td style="padding:6px 10px">02/05/2026</td>
+              <td style="padding:6px 10px;text-align:center">09:37</td>
+              <td style="padding:6px 10px;text-align:center">21:28</td>
+              <td style="padding:6px 10px;text-align:center">11.83h</td>
+              <td style="padding:6px 10px;text-align:center"><span style="background:var(--color-background-success);color:var(--color-text-success);font-size:10px;padding:2px 8px;border-radius:10px">✓ Hợp lệ</span></td>
+            </tr>
+            <tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-warning)">
+              <td style="padding:6px 10px">00043</td>
+              <td style="padding:6px 10px">Trinh Van Don</td>
+              <td style="padding:6px 10px">02/05/2026</td>
+              <td style="padding:6px 10px;text-align:center">19:57</td>
+              <td style="padding:6px 10px;text-align:center;color:var(--color-text-danger)">—</td>
+              <td style="padding:6px 10px;text-align:center">0h</td>
+              <td style="padding:6px 10px;text-align:center"><span style="background:var(--color-background-warning);color:var(--color-text-warning);font-size:10px;padding:2px 8px;border-radius:10px;border:0.5px solid var(--color-border-warning)">⚠ Thiếu Ra</span></td>
+            </tr>
+            <tr style="border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-danger)">
+              <td style="padding:6px 10px;color:var(--color-text-danger)">00999</td>
+              <td style="padding:6px 10px;color:var(--color-text-secondary)">Unknown</td>
+              <td style="padding:6px 10px">03/05/2026</td>
+              <td style="padding:6px 10px;text-align:center">08:00</td>
+              <td style="padding:6px 10px;text-align:center">17:00</td>
+              <td style="padding:6px 10px;text-align:center">9h</td>
+              <td style="padding:6px 10px;text-align:center"><span style="background:var(--color-background-danger);color:var(--color-text-danger);font-size:10px;padding:2px 8px;border-radius:10px;border:0.5px solid var(--color-border-danger)">✕ Chưa mapping</span></td>
+            </tr>
+            <tr style="border-bottom:0.5px solid var(--color-border-tertiary)">
+              <td style="padding:6px 10px">00015</td>
+              <td style="padding:6px 10px">Nguyen The Thai</td>
+              <td style="padding:6px 10px">02/05/2026</td>
+              <td style="padding:6px 10px;text-align:center">07:05</td>
+              <td style="padding:6px 10px;text-align:center">21:01</td>
+              <td style="padding:6px 10px;text-align:center">11.9h</td>
+              <td style="padding:6px 10px;text-align:center"><span style="background:var(--color-background-success);color:var(--color-text-success);font-size:10px;padding:2px 8px;border-radius:10px">✓ Hợp lệ</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top:8px;font-size:11px;color:var(--color-text-secondary);text-align:center">Màn hình 2 — Import & Preview chấm công (step 3/4)</div>
+</div>

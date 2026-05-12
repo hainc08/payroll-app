@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mysql -u haimv -p123456)",
+      "PowerShell(Get-Command mysql -ErrorAction SilentlyContinue)",
+      "PowerShell(Get-Command mariadb -ErrorAction SilentlyContinue)",
+      "PowerShell(ls \"C:\\\\Program Files\\\\MariaDB 12.2\\\\bin\\\\\" | Select-Object Name | Where-Object {$_.Name -match \"mysql\"})",
+      "PowerShell(netstat -ano)",
+      "Bash(node server.js)",
+      "Bash(curl -s http://127.0.0.1:3001/health)",
+      "Bash(npx --yes serve \"c:/Users/admin/workspace/100.Claude/payroll-app/frontend\" --listen 5173)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/login.html)",
+      "Bash(curl -s -L -o /dev/null -w \"%{http_code}\" http://localhost:5173/login.html)",
+      "Bash(curl -s -X POST http://127.0.0.1:3001/api/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"admin@abc.vn\",\"password\":\"123456\"}')",
+      "Bash(node -e ' *)",
+      "Bash(curl -s -X POST http://127.0.0.1:3001/api/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"admin@nhahanggabc.vn\",\"password\":\"123456\"}')",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s -X POST http://127.0.0.1:3001/api/auth/login -H 'Content-Type: application/json' -d '{\"email\":\"admin@nhahanggabc.vn\",\"password\":\"Admin@123\"}')",
+      "Bash(echo \"Backend PID: $!\")",
+      "Bash(sleep 3 && curl -s http://127.0.0.1:3001/health && echo \"\" && cat /tmp/backend.log | tail -5)",
+      "Read(//tmp/**)",
+      "Bash(npx --yes serve \"c:/Users/admin/workspace/100.Claude/payroll-app/frontend\" --listen tcp://0.0.0.0:5173)",
+      "Bash(echo \"Frontend PID: $!\")",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\" http://localhost:5173/login.html)",
+      "Bash(curl -s -L -o /dev/null -w \"HTTP %{http_code}\" http://localhost:5173/login.html)",
+      "Bash(curl -s -L -o /dev/null -w \"index.html: HTTP %{http_code}\\\\n\" http://localhost:5173/index.html)"
+    ]
+  }
+}

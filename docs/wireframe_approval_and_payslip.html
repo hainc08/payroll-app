@@ -1,0 +1,148 @@
+<div style="font-size:13px;color:var(--color-text-primary);display:flex;flex-direction:column;gap:16px">
+
+<!-- ── APPROVAL SCREEN ── -->
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden">
+  <div style="padding:14px 20px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:15px;font-weight:500">Phê duyệt lương — Tháng 5/2026</div>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">Giám đốc · Xem xét bảng lương</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button style="font-size:12px;padding:6px 16px;color:var(--color-text-danger);border-color:var(--color-border-danger)">
+        <i class="ti ti-x" aria-hidden="true"></i> Từ chối
+      </button>
+      <button style="font-size:12px;padding:6px 16px;background:var(--color-background-success);color:var(--color-text-success);border-color:var(--color-border-success)">
+        <i class="ti ti-check" aria-hidden="true"></i> Duyệt &amp; Chốt lương
+      </button>
+    </div>
+  </div>
+
+  <div style="padding:16px 20px;display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--color-background-primary)">
+    <!-- Summary for director -->
+    <div>
+      <div style="font-size:12px;font-weight:500;margin-bottom:10px">Tóm tắt kỳ lương</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md)">
+          <span style="color:var(--color-text-secondary)">Tổng nhân viên</span><strong>50</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md)">
+          <span style="color:var(--color-text-secondary)">Tổng gross</span><strong>436.580.000 đ</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md)">
+          <span style="color:var(--color-text-secondary)">BHXH + Thuế trừ</span><strong style="color:var(--color-text-danger)">-54.040.000 đ</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 10px;background:var(--color-background-success);border-radius:var(--border-radius-md)">
+          <span style="color:var(--color-text-success);font-weight:500">Quỹ lương NET</span><strong style="color:var(--color-text-success)">382.540.000 đ</strong>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-tertiary)">
+          <span style="color:var(--color-text-secondary)">So với tháng 4</span>
+          <strong style="color:var(--color-text-danger)">▼ 2.1% (−8.2tr)</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Approval timeline -->
+    <div>
+      <div style="font-size:12px;font-weight:500;margin-bottom:10px">Lịch sử phê duyệt</div>
+      <div style="display:flex;flex-direction:column;gap:0">
+        <div style="display:flex;gap:10px;padding-bottom:12px;position:relative">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="width:22px;height:22px;border-radius:50%;background:var(--color-background-success);border:1px solid var(--color-border-success);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--color-text-success)">✓</div>
+            <div style="width:1px;flex:1;background:var(--color-border-tertiary);margin-top:4px"></div>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:500">Kế toán tạo bảng lương</div>
+            <div style="font-size:11px;color:var(--color-text-secondary)">ketoan@abc.vn · 10/05 08:30</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;padding-bottom:12px">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="width:22px;height:22px;border-radius:50%;background:var(--color-background-success);border:1px solid var(--color-border-success);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--color-text-success)">✓</div>
+            <div style="width:1px;flex:1;background:var(--color-border-tertiary);margin-top:4px"></div>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:500">Kế toán trưởng đã duyệt</div>
+            <div style="font-size:11px;color:var(--color-text-secondary)">ktruong@abc.vn · 11/05 09:15</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--color-background-warning);border:1.5px dashed var(--color-border-warning);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--color-text-warning)">?</div>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:500;color:var(--color-text-warning)">Chờ Giám đốc duyệt</div>
+            <div style="font-size:11px;color:var(--color-text-secondary)">Đang xem xét...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Override note -->
+      <div style="margin-top:10px;background:var(--color-background-warning);border:0.5px solid var(--color-border-warning);border-radius:var(--border-radius-md);padding:8px 10px">
+        <div style="font-size:11px;color:var(--color-text-warning)">⚠ 1 dòng có thuế TNCN điều chỉnh thủ công — <strong>EC-CMHIEU</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="font-size:11px;color:var(--color-text-secondary);text-align:center">Màn hình 4 — Phê duyệt lương (role: Giám đốc)</div>
+
+<!-- ── PAYSLIP ── -->
+<div style="border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;max-width:480px;margin:0 auto">
+  <div style="padding:14px 20px;border-bottom:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);text-align:center">
+    <div style="font-size:13px;font-weight:500">PHIẾU LƯƠNG</div>
+    <div style="font-size:11px;color:var(--color-text-secondary)">Nhà hàng ABC · Tháng 5/2026</div>
+  </div>
+
+  <div style="padding:14px 20px;background:var(--color-background-primary)">
+    <!-- Employee info -->
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:0.5px solid var(--color-border-tertiary)">
+      <div style="width:38px;height:38px;border-radius:50%;background:var(--color-background-info);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--color-text-info)">NVT</div>
+      <div>
+        <div style="font-size:13px;font-weight:500">Nguyễn Văn Thương</div>
+        <div style="font-size:11px;color:var(--color-text-secondary)">EC-NVTHUONG · Nhà hàng · TNC</div>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <div style="font-size:11px;color:var(--color-text-secondary)">Ngày công</div>
+        <div style="font-size:13px;font-weight:500">27.5 / 26</div>
+      </div>
+    </div>
+
+    <!-- Income table -->
+    <div style="font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px">THU NHẬP</div>
+    <table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:12px">
+      <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Lương theo công</td><td style="text-align:right">21.153.846</td></tr>
+      <tr><td style="padding:4px 0;color:var(--color-text-secondary)">PC trách nhiệm</td><td style="text-align:right">10.150.000</td></tr>
+      <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Trợ cấp điện thoại</td><td style="text-align:right">500.000</td></tr>
+      <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Thưởng doanh thu</td><td style="text-align:right">17.120.000</td></tr>
+      <tr style="border-top:0.5px solid var(--color-border-tertiary)">
+        <td style="padding:6px 0;font-weight:500">Tổng thu nhập</td>
+        <td style="text-align:right;font-weight:500">48.923.846</td>
+      </tr>
+    </table>
+
+    <!-- Deduction table -->
+    <div style="font-size:11px;font-weight:500;color:var(--color-text-secondary);margin-bottom:6px">KHẤU TRỪ</div>
+    <table style="width:100%;border-collapse:collapse;font-size:11px;margin-bottom:12px">
+      <tr><td style="padding:4px 0;color:var(--color-text-secondary)">BHXH (10.5%)</td><td style="text-align:right;color:var(--color-text-danger)">-1.112.213</td></tr>
+      <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Thuế TNCN</td><td style="text-align:right;color:var(--color-text-danger)">-821.163</td></tr>
+      <tr><td style="padding:4px 0;color:var(--color-text-secondary)">Tạm ứng</td><td style="text-align:right;color:var(--color-text-danger)">—</td></tr>
+    </table>
+
+    <!-- Net salary -->
+    <div style="background:var(--color-background-success);border-radius:var(--border-radius-md);padding:10px 14px;display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:12px;font-weight:500;color:var(--color-text-success)">LƯƠNG THỰC LĨNH</span>
+      <span style="font-size:16px;font-weight:500;color:var(--color-text-success)">46.990.470 đ</span>
+    </div>
+    <div style="font-size:10px;color:var(--color-text-secondary);margin-top:6px;text-align:center">Bốn mươi sáu triệu chín trăm chín mươi nghìn bốn trăm bảy mươi đồng</div>
+
+    <div style="display:flex;justify-content:space-between;margin-top:16px;padding-top:12px;border-top:0.5px solid var(--color-border-tertiary)">
+      <button style="font-size:12px;padding:6px 14px;display:flex;align-items:center;gap:4px">
+        <i class="ti ti-download" aria-hidden="true"></i> Tải PDF
+      </button>
+      <div style="font-size:10px;color:var(--color-text-secondary);text-align:right">
+        Chốt ngày: 12/05/2026<br>Chuyển khoản: ACB ···4521
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="font-size:11px;color:var(--color-text-secondary);text-align:center">Màn hình 5 — Phiếu lương (xem online + tải PDF)</div>
+</div>
